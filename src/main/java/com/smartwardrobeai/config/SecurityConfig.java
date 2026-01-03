@@ -60,8 +60,7 @@ public class SecurityConfig {
                 // 2.3 配置请求权限
                 .authorizeHttpRequests(auth -> auth
                         // 允许匿名访问的接口 (注册、登录)
-                        .requestMatchers("/api/auth/**",
-                                "/test/**")
+                        .requestMatchers("app/api/auth/**")
                         .permitAll()
                         // 允许访问静态资源或错误页面 (可选)
                         .requestMatchers("/error").permitAll()

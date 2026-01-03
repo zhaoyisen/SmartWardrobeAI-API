@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * 用于注册插件 (拦截器)
  */
 @Configuration
-@MapperScan("com.smartwardrobeai.mapper")
+@MapperScan("com.smartwardrobeai.app.mapper,com.smartwardrobeai.admin.mapper")
 public class MybatisPlusConfig {
 
     /**

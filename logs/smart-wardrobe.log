@@ -966,7 +966,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -1118,7 +1118,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -1269,7 +1269,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -1420,7 +1420,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -1571,7 +1571,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -1722,7 +1722,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -1873,7 +1873,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -2024,7 +2024,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -2175,7 +2175,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -2326,7 +2326,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -2477,7 +2477,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -2628,7 +2628,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -2779,7 +2779,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -2930,7 +2930,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -3081,7 +3081,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -3233,7 +3233,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -3384,7 +3384,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -3536,7 +3536,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -3688,7 +3688,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -3839,7 +3839,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -3990,7 +3990,7 @@ com.smartwardrobeai.common.BusinessException: 操作太频繁，请稍后再试
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
-	at com.smartwardrobeai.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
+	at com.smartwardrobeai.app.controller.FileController$$SpringCGLIB$$0.upload(<generated>)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -5908,13 +5908,13 @@ Consider defining a bean of type 'org.springframework.web.client.RestTemplate' i
 2026-01-03 18:27:01.110 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.50]
 2026-01-03 18:27:01.147 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
 2026-01-03 18:27:01.147 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1703 ms
-2026-01-03 18:27:01.273 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2026-01-03 18:27:01.273 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 2026-01-03 18:27:01.275 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
 2026-01-03 18:27:01.295 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
 2026-01-03 18:27:01.312 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
@@ -5940,7 +5940,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
@@ -5958,7 +5958,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 24 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2315)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1733)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
@@ -5978,13 +5978,13 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2026-01-03 18:27:18.321 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.50]
 2026-01-03 18:27:18.355 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
 2026-01-03 18:27:18.355 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1468 ms
-2026-01-03 18:27:18.478 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2026-01-03 18:27:18.478 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 2026-01-03 18:27:18.480 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
 2026-01-03 18:27:18.493 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
 2026-01-03 18:27:18.508 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
@@ -6010,7 +6010,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
@@ -6028,7 +6028,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 24 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2315)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1733)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
@@ -6040,12 +6040,12 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2026-01-03 18:28:15.586 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
 2026-01-03 18:28:15.590 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
 2026-01-03 18:28:15.618 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
-2026-01-03 18:28:16.156 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2026-01-03 18:28:16.156 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 2026-01-03 18:28:16.184 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
 2026-01-03 18:28:16.206 [main] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
@@ -6153,7 +6153,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
@@ -6171,7 +6171,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 106 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2315)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1733)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
@@ -6260,7 +6260,7 @@ java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMerge
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
@@ -6289,7 +6289,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
 	... 80 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
@@ -6307,7 +6307,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 106 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2315)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1733)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
@@ -6327,13 +6327,13 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2026-01-03 18:29:31.228 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.50]
 2026-01-03 18:29:31.262 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
 2026-01-03 18:29:31.262 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1455 ms
-2026-01-03 18:29:31.382 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+2026-01-03 18:29:31.382 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 2026-01-03 18:29:31.384 [restartedMain] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
 2026-01-03 18:29:31.397 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
 2026-01-03 18:29:31.412 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'aiModelController' defined in file [D:\Develop\project\SmartWardrobeAI\target\classes\com\smartwardrobeai\ai\AiModelController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
 	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395)
@@ -6359,7 +6359,7 @@ org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'sysAIModelServiceImpl': Unsatisfied dependency expressed through field 'baseMapper': No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
@@ -6377,7 +6377,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
 	... 24 common frames omitted
-Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.smartwardrobeai.app.mapper.SysAiModelMapper' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoMatchingBeanFound(DefaultListableBeanFactory.java:2315)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1733)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653)
@@ -7905,7 +7905,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in com.smartwardrobeai.controller.ClothingController required a bean of type 'com.smartwardrobeai.service.ClothingService' that could not be found.
+Parameter 0 of constructor in com.smartwardrobeai.app.controller.ClothingController required a bean of type 'com.smartwardrobeai.service.ClothingService' that could not be found.
 
 
 Action:
@@ -8008,7 +8008,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in com.smartwardrobeai.controller.ClothingController required a bean of type 'com.smartwardrobeai.service.ClothingService' that could not be found.
+Parameter 0 of constructor in com.smartwardrobeai.app.controller.ClothingController required a bean of type 'com.smartwardrobeai.service.ClothingService' that could not be found.
 
 
 Action:
@@ -8183,7 +8183,7 @@ APPLICATION FAILED TO START
 
 Description:
 
-Parameter 0 of constructor in com.smartwardrobeai.controller.ClothingController required a bean of type 'com.smartwardrobeai.service.ClothingService' that could not be found.
+Parameter 0 of constructor in com.smartwardrobeai.app.controller.ClothingController required a bean of type 'com.smartwardrobeai.service.ClothingService' that could not be found.
 
 
 Action:
@@ -9499,7 +9499,7 @@ This generated password is for development use only. Your security configuration
 2026-01-03 19:45:39.326 [tomcat-handler-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2026-01-03 19:45:39.327 [tomcat-handler-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
 2026-01-03 19:45:39.391 [tomcat-handler-1] WARN  c.s.handler.GlobalExceptionHandler - 参数校验失败: type: 不能为空, target: 不能为空
-2026-01-03 19:45:39.402 [tomcat-handler-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.smartwardrobeai.common.Result<java.lang.String> com.smartwardrobeai.controller.AuthController.sendCode(com.smartwardrobeai.model.dto.SendCodeRequest) with 2 errors: [Field error in object 'sendCodeRequest' on field 'type': rejected value [null]; codes [NotBlank.sendCodeRequest.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendCodeRequest.type,type]; arguments []; default message [type]]; default message [不能为空]] [Field error in object 'sendCodeRequest' on field 'target': rejected value [null]; codes [NotBlank.sendCodeRequest.target,NotBlank.target,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendCodeRequest.target,target]; arguments []; default message [target]]; default message [不能为空]] ]
+2026-01-03 19:45:39.402 [tomcat-handler-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public com.smartwardrobeai.common.Result<java.lang.String> com.smartwardrobeai.app.controller.AuthController.sendCode(com.smartwardrobeai.model.dto.SendCodeRequest) with 2 errors: [Field error in object 'sendCodeRequest' on field 'type': rejected value [null]; codes [NotBlank.sendCodeRequest.type,NotBlank.type,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendCodeRequest.type,type]; arguments []; default message [type]]; default message [不能为空]] [Field error in object 'sendCodeRequest' on field 'target': rejected value [null]; codes [NotBlank.sendCodeRequest.target,NotBlank.target,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [sendCodeRequest.target,target]; arguments []; default message [target]]; default message [不能为空]] ]
 2026-01-03 19:45:41.748 [tomcat-handler-2] INFO  c.s.service.VerificationService - ====> 验证码存储完毕 Key: auth:sms:13800138000
 2026-01-03 19:45:41.748 [tomcat-handler-2] INFO  c.s.service.VerificationService - 
 
@@ -9526,7 +9526,7 @@ com.smartwardrobeai.common.BusinessException: 验证码错误
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
 	at com.smartwardrobeai.service.AuthService$$SpringCGLIB$$0.loginOrRegisterBySms(<generated>)
-	at com.smartwardrobeai.controller.AuthController.loginBySms(AuthController.java:52)
+	at com.smartwardrobeai.app.controller.AuthController.loginBySms(AuthController.java:52)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -9677,7 +9677,7 @@ com.smartwardrobeai.common.BusinessException: 验证码错误
 2026-01-03 19:49:55.331 [tomcat-handler-7] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -9819,7 +9819,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:49:58.267 [tomcat-handler-8] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -9961,7 +9961,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:49:59.167 [tomcat-handler-9] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -10103,7 +10103,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:49:59.821 [tomcat-handler-10] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -10245,7 +10245,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:50:00.367 [tomcat-handler-11] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -10387,7 +10387,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:50:00.881 [tomcat-handler-12] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -10529,7 +10529,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:50:01.344 [tomcat-handler-13] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -10671,7 +10671,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:50:01.828 [tomcat-handler-14] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -10813,7 +10813,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:50:02.198 [tomcat-handler-15] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -10955,7 +10955,7 @@ com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 2026-01-03 19:50:02.588 [tomcat-handler-16] ERROR c.s.handler.GlobalExceptionHandler - 业务异常: code=500, message=请求太频繁，请稍后再试
 com.smartwardrobeai.common.BusinessException: 请求太频繁，请稍后再试
 	at com.smartwardrobeai.service.VerificationService.sendCode(VerificationService.java:55)
-	at com.smartwardrobeai.controller.AuthController.sendCode(AuthController.java:33)
+	at com.smartwardrobeai.app.controller.AuthController.sendCode(AuthController.java:33)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -11680,7 +11680,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -11827,7 +11827,7 @@ java.lang.RuntimeException: AI 服务调用失败: 404 Not Found on POST request
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -11984,7 +11984,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -12131,7 +12131,7 @@ java.lang.RuntimeException: AI 服务调用失败: 404 Not Found on POST request
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -12288,7 +12288,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -12435,7 +12435,7 @@ java.lang.RuntimeException: AI 服务调用失败: 404 Not Found on POST request
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -12592,7 +12592,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -12739,7 +12739,7 @@ java.lang.RuntimeException: AI 服务调用失败: 404 Not Found on POST request
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -12896,7 +12896,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -13043,7 +13043,7 @@ java.lang.RuntimeException: AI 服务调用失败: 404 Not Found on POST request
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -13200,7 +13200,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -13347,7 +13347,7 @@ java.lang.RuntimeException: AI 服务调用失败: 404 Not Found on POST request
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -13505,7 +13505,7 @@ org.springframework.web.client.HttpClientErrorException$NotFound: 404 Not Found 
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -13652,7 +13652,7 @@ java.lang.RuntimeException: AI 服务调用失败: 404 Not Found on POST request
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:724)
 	at com.smartwardrobeai.service.impl.ClothingServiceImpl$$SpringCGLIB$$0.uploadAndAnalyze(<generated>)
-	at com.smartwardrobeai.controller.ClothingController.analyze(ClothingController.java:36)
+	at com.smartwardrobeai.app.controller.ClothingController.analyze(ClothingController.java:36)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258)
@@ -13859,3 +13859,51 @@ This generated password is for development use only. Your security configuration
 2026-01-03 20:02:46.166 [tomcat-handler-7] INFO  c.s.service.impl.ClothingServiceImpl - 收到图片分析请求: com_avatar_1040g2jo314cl5pug6k005orog3b7ra1paeplmfg_imageView2_2_w_80_format_jpg_imageView2_2_w_60_format_webp_imageMogr2_.jpg
 2026-01-03 20:02:46.182 [tomcat-handler-7] INFO  c.s.s.impl.MinioStorageServiceImpl - 文件上传 MinIO 成功: http://localhost:9000/smart-wardrobe-ai/2026/01/03/82420104bb1243b3ab9508f8606ab6ce.jpg
 2026-01-03 20:02:46.197 [tomcat-handler-7] INFO  c.s.ai.OpenAiCompatibleStrategy - 正在调用 AI 模型: [qwen3-vl-flash], URL: [https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions]
+2026-01-03 20:47:50.343 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-03 20:47:50.349 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-01-03 20:47:50.362 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - SmartWardrobeHikariCP - Shutdown initiated...
+2026-01-03 20:47:50.364 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - SmartWardrobeHikariCP - Shutdown completed.
+2026-01-03 21:01:16.166 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-01-03 21:01:16.193 [restartedMain] INFO  c.s.SmartWardrobeAiApplication - Starting SmartWardrobeAiApplication using Java 21.0.9 with PID 2612 (D:\Develop\project\SmartWardrobeAI\target\classes started by zhaoyisen in D:\Develop\project\SmartWardrobeAI)
+2026-01-03 21:01:16.194 [restartedMain] INFO  c.s.SmartWardrobeAiApplication - No active profile set, falling back to 1 default profile: "default"
+2026-01-03 21:01:16.222 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-01-03 21:01:16.222 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-01-03 21:01:17.267 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2026-01-03 21:01:17.269 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-01-03 21:01:17.299 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2026-01-03 21:01:17.964 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-01-03 21:01:17.973 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-01-03 21:01:17.974 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-01-03 21:01:17.974 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-01-03 21:01:18.012 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-01-03 21:01:18.012 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1790 ms
+2026-01-03 21:01:19.188 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-01-03 21:01:19.211 [restartedMain] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 27224ac5-b7d8-4311-85b2-1e05e37107aa
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-01-03 21:01:19.216 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-01-03 21:01:19.258 [restartedMain] WARN  o.s.s.c.a.w.c.AuthorizeHttpRequestsConfigurer$AuthorizationManagerRequestMatcherRegistry - One of the patterns in [app/api/auth/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-01-03 21:01:19.656 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2026-01-03 21:01:19.690 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-01-03 21:01:19.699 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-01-03 21:01:19.699 [restartedMain] INFO  c.s.config.ProjectStartupListener - 
+----------------------------------------------------------
+	应用 'SmartWardrobeAI' 启动成功!
+	接口文档(Local): 	http://localhost:8080/swagger-ui/index.html
+	接口文档(Network): 	http://192.168.0.101:8080/swagger-ui/index.html
+----------------------------------------------------------
+
+2026-01-03 21:01:19.709 [restartedMain] INFO  c.s.SmartWardrobeAiApplication - Started SmartWardrobeAiApplication in 3.92 seconds (process running for 4.787)
+2026-01-03 21:01:20.165 [RMI TCP Connection(1)-192.168.0.101] INFO  com.zaxxer.hikari.HikariDataSource - SmartWardrobeHikariCP - Starting...
+2026-01-03 21:01:20.167 [RMI TCP Connection(2)-192.168.0.101] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-03 21:01:20.167 [RMI TCP Connection(2)-192.168.0.101] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-01-03 21:01:20.171 [RMI TCP Connection(2)-192.168.0.101] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-01-03 21:01:20.312 [RMI TCP Connection(1)-192.168.0.101] INFO  com.zaxxer.hikari.pool.HikariPool - SmartWardrobeHikariCP - Added connection com.mysql.cj.jdbc.ConnectionImpl@4550e50f
+2026-01-03 21:01:20.315 [RMI TCP Connection(1)-192.168.0.101] INFO  com.zaxxer.hikari.HikariDataSource - SmartWardrobeHikariCP - Start completed.
+2026-01-03 21:01:23.211 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-03 21:01:23.216 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-01-03 21:01:23.228 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - SmartWardrobeHikariCP - Shutdown initiated...
+2026-01-03 21:01:23.232 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - SmartWardrobeHikariCP - Shutdown completed.
