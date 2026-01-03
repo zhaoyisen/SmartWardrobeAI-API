@@ -1,7 +1,7 @@
-package com.smartwardrobeai.app.mapper;
+package com.smartwardrobeai.admin.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.smartwardrobeai.app.model.entity.SysAiModel;
+import com.smartwardrobeai.admin.model.entity.SysAiModel;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

@@ -1,13 +1,32 @@
-package com.smartwardrobeai.app.service;
+package com.smartwardrobeai.admin.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.smartwardrobeai.app.model.entity.SysAiModel;
+import com.smartwardrobeai.admin.model.dto.AiModelQueryDTO;
+import com.smartwardrobeai.admin.model.dto.AiModelSaveDTO;
+import com.smartwardrobeai.admin.model.entity.SysAiModel;
+import com.smartwardrobeai.admin.model.vo.AiModelVO;
+import com.smartwardrobeai.common.model.entity.PageResult;
 
 import java.util.List;
 import java.util.Map;
 
 public interface SysAIModelService extends IService<SysAiModel> {
+
+
+    PageResult<AiModelVO> pageQuery(AiModelQueryDTO queryDTO);
+
+
+    void saveModel(AiModelSaveDTO saveDTO);
+
+
+    void updateModel(AiModelSaveDTO saveDTO);
+
+
+    AiModelVO getDetail(Long id);
+
+
+    void updateStatus(Long id, Integer status);
 
 
     /**

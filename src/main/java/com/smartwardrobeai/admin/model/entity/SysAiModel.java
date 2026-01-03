@@ -1,8 +1,9 @@
-package com.smartwardrobeai.app.model.entity;
+package com.smartwardrobeai.admin.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.smartwardrobeai.app.model.entity.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
