@@ -1,0 +1,10 @@
+package com.smartwardrobeai.mapper;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.smartwardrobeai.model.entity.SysAiModel;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface SysAiModelMapper extends BaseMapper<SysAiModel> {
+    // 基础 CRUD 由 MP 自动完成，暂无需手写 SQL
+}
