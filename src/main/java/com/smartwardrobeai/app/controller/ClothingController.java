@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("app/api/clothing")
+@RequestMapping("api/app/clothing")
 @Tag(name = "衣物管理", description = "核心业务：上传、分析、录入")
 @RequiredArgsConstructor
 public class ClothingController {

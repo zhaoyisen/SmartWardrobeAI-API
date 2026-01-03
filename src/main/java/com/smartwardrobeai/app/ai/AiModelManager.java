@@ -1,9 +1,9 @@
 package com.smartwardrobeai.app.ai;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.smartwardrobeai.app.mapper.SysAiModelMapper;
+import com.smartwardrobeai.admin.mapper.SysAiModelMapper;
 import com.smartwardrobeai.app.model.dto.AiExecutionDTO;
-import com.smartwardrobeai.app.model.entity.SysAiModel;
+import com.smartwardrobeai.admin.model.entity.SysAiModel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

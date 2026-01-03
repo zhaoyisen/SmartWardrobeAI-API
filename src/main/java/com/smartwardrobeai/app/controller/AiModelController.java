@@ -1,8 +1,8 @@
 package com.smartwardrobeai.app.controller;
 
 import com.smartwardrobeai.common.Result;
-import com.smartwardrobeai.app.model.entity.SysAiModel;
-import com.smartwardrobeai.app.service.SysAIModelService;
+import com.smartwardrobeai.admin.model.entity.SysAiModel;
+import com.smartwardrobeai.admin.service.SysAIModelService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("app/api/ai-models")
+@RequestMapping("api/app/ai-models")
 @Tag(name = "AI 模型配置", description = "前端获取模型列表和详情")
 @RequiredArgsConstructor
 public class AiModelController {

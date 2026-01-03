@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("app/api/file")
+@RequestMapping("api/app/file")
 @Tag(name = "文件服务")
 @RequiredArgsConstructor
 @Validated //开启参数校验
