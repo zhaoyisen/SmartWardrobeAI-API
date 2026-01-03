@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * JWT 工具类
@@ -32,6 +34,30 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+
+    /**
+     * 【核心方法】全参数生成 Token
+     *
+     * @param userId   用户ID
+     * @param subject  用户名/账号
+     * @param userType 用户类型 (ADMIN / APP)
+     */
+    public String generateToken(Long userId, String subject, String userType) {
+        // 将 userType 放入 claims map 中
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", userId);
+        claims.put("type", userType); // 🔥 关键：写入身份标识
+
+        return Jwts.builder()
+                .subject(subject)
+                .claims(claims) // 注入所有自定义属性
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSigningKey())
+                .compact();
+    }
+
+
     /**
      * 生成 Token
      * 对应 AuthService 中的调用：jwtUtil.generateToken(user.getId(), account)
@@ -41,14 +67,18 @@ public class JwtUtil {
      * @return 加密后的 Token 字符串
      */
     public String generateToken(Long userId, String subject) {
-        return Jwts.builder()
-                .subject(subject)              // 设置主题 (通常是账号)
-                .claim("userId", userId)       // 设置自定义荷载 (用户ID)
-                .issuedAt(new Date())          // 签发时间
-                .expiration(new Date(System.currentTimeMillis() + expiration)) // 过期时间
-                .signWith(getSigningKey())     // 签名
-                .compact();
+        return generateToken(userId, subject, "APP");
     }
+
+    /**
+     * 【新增方法】供 Admin 端使用 (对应 Controller 中的调用)
+     * 这里的 subject 暂时用 userId.toString() 代替，或者你可以修改 Controller 传 username 进来
+     */
+    public String createToken(Long userId, String subject, String userType) {
+        // 为了方便，这里 subject 直接填 userId 的字符串形式
+        return generateToken(userId, subject, userType);
+    }
+
 
     /**
      * 解析 Token 获取 Claims (荷载)
@@ -91,6 +121,20 @@ public class JwtUtil {
             return claims.get("userId", Long.class);
         } catch (Exception e) {
             // 解析失败（过期、篡改、格式错误），返回 null，不让工具类直接炸掉
+            return null;
+        }
+    }
+
+
+    /**
+     * 【新增】获取用户类型 (ADMIN / APP)
+     * 给拦截器/过滤器使用
+     */
+    public String getUserType(String token) {
+        try {
+            Claims claims = extractAllClaims(token);
+            return claims.get("type", String.class);
+        } catch (Exception e) {
             return null;
         }
     }

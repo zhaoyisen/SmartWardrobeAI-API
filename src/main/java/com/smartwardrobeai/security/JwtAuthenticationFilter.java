@@ -1,5 +1,8 @@
 package com.smartwardrobeai.security;
 
+import com.alibaba.fastjson2.JSON;
+import com.smartwardrobeai.common.Result;
+import com.smartwardrobeai.common.ResultCode;
 import com.smartwardrobeai.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
@@ -20,7 +23,10 @@ import java.util.Collections;
 
 /**
  * JWT 认证过滤器
- * 作用：拦截所有 HTTP 请求，检查 Header 中是否包含有效的 Authorization Token。
+ * 作用：
+ * 1. 拦截请求解析 Token
+ * 2. 区分用户身份 (ADMIN vs APP)
+ * 3. 防止越权访问 (APP用户禁止访问后台接口)
  * 如果包含且有效，则将用户信息注入到 Spring Security 的上下文中，
  * 这样后续的 Controller 才能知道“当前是谁在操作”。
  */
@@ -63,9 +69,28 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String username = claims.getSubject();          // 获取用户名/账号
                 Long userId = claims.get("userId", Long.class); // 获取我们存入的 userId
 
+                //新增appORadmin校验
+                String userType = claims.get("type", String.class); // 🔥 获取用户类型 (ADMIN / APP)
+                String requestURI = request.getRequestURI();
+                // 规则：如果你想访问 /api/admin/**，除此之外你的 Token 类型必须是 ADMIN
+                if (requestURI.startsWith("/api/admin") && !"ADMIN".equals(userType)) {
+                    log.warn("越权警告: 用户[{}] 持有类型[{}] 试图访问后台接口: {}", userId, userType, requestURI);
+                    // 直接阻断，返回 403 Forbidden
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN); // HTTP 状态码 403
+                    response.setContentType("application/json;charset=UTF-8");
+                    String jsonString = JSON.toJSONString(Result.failed(ResultCode.FORBIDDEN));
+                    response.getWriter().write(jsonString);
+                    return; // 结束方法，不调用 filterChain.doFilter
+                }
+
+
                 // 6. 如果用户名存在，且当前上下文 (Context) 中还没有认证信息
                 // (getAuthentication() == null 说明还没登录过)
-                if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+                    // 动态分配角色 (方便后续 @PreAuthorize("hasRole('ADMIN')") 使用)
+                    String role = "ADMIN".equals(userType) ? "ROLE_ADMIN" : "ROLE_USER";
+
 
                     // 7. 构建 Spring Security 的标准认证对象
                     // 参数1: Principal (通常放 User 对象或 ID，Controller 可以直接拿)
@@ -74,7 +99,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userId,
                             null,
-                            Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
+                            Collections.singletonList(new SimpleGrantedAuthority(role))
                     );
 
                     // 8. 设置请求的详细信息 (IP, SessionID 等，虽然 JWT 无状态不太用 SessionID)
