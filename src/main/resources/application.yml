@@ -20,9 +20,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 注意: 生产环境建议使用环境变量引用，如 ${DB_HOST:localhost}
-    url: jdbc:mysql://127.0.0.1:3306/smart_wardrobe?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: dev
-    password: dev123
+    url: jdbc:mysql://139.155.173.161:3306/smart_wardrobe?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
@@ -33,7 +33,7 @@ spring:
 
   data:
     redis:
-      host: 127.0.0.1
+      host: 139.155.173.161
       port: 6379
       timeout: 5000
       password: 123456
@@ -123,7 +123,7 @@ qiniu:
     domain: http://t88lyb67w.hd-bkt.clouddn.com # 你的空间域名 (注意最后不要带斜杠)
 
 minio:
-  endpoint: http://localhost:9000
-  accessKey: minioadmin
-  secretKey: minioadmin
+  endpoint: http://139.155.173.161:9000
+  accessKey: admin_minio
+  secretKey: minio12345678
   bucketName: smart-wardrobe-ai
