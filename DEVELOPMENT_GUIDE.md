@@ -1,19 +1,179 @@
+# AI驱动博客系统需求文档
+## 1. 项目概述
+
+SmartWardrobe AI 是一个利用 Google Gemini 3 系列模型构建的智能时尚管理应用。它旨在通过 AI 解决用户“不知道怎么穿”、“衣服太多记不住”以及“线上试穿”的需求。
+
+## 功能模块
+
+### 管理端
+
+#### 用户认证与管理
+
+1. 用户登录
+2. 用户列表查看
+   - 管理端用户
+   - APP端用户
+
+#### AI模型管理
+
+1. 模型新增
+2. 模型修改
+3. 模型查看筛选
+4. 模型删除
+5. 模型禁用
+
+
+
+<<<<<<< Current (Your changes)
+#### 数据字典
+
+1. 
+
+
+
+
+
+#### 存储管理
+
+1. Minio文件查看
+2. Minio存储桶统计
+3. Minio文件管理
+=======
+#### 存储管理
+
+1. Minio文件查看
+2. Minio存储桶统计
+3. Minio文件管理
+
+
+
+
+
+
+
+
+
+### APP端
+
+
+
+
+
+
+
+- 用户注册与登录
+- 博客文章的增删改查
+- 评论与点赞
+- 后台管理（用户管理、内容审核）
+- AI助手（根据主题自动生成文章内容）
+## 技术栈
+- 后端：Go（Gin框架）、PostgreSQL
+- 前端：Next.js、Tailwind CSS
+- AI接口：OpenAI GPT-4
+- 容器：Docker + Devbox（开发环境）
+## 接口示例
+- `POST /api/article` ：创建文章
+- `GET /api/articles` ：获取文章列表
+- `POST /api/article/generate` ：AI自动生成文章
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # SmartWardrobe AI 开发者指南与技术规格
 
-## 1. 项目概述
-SmartWardrobe AI 是一个利用 Google Gemini 3 系列模型构建的智能时尚管理应用。它旨在通过 AI 解决用户“不知道怎么穿”、“衣服太多记不住”以及“线上试穿”的需求。
+
+>>>>>>> Incoming (Background Agent changes)
+
+
+
+
+
+
+
+
+
+### APP端
+
+#### 用户认证与管理
+
+**需求描述：** 前端需要识别用户身份，以隔离不同用户的衣橱数据。
+
+1. 注册
+2. 登录
+3. 个人数据管理
+
+## 技术栈
+- 后端：Go（Gin框架）、PostgreSQL
+- 前端：Next.js、Tailwind CSS
+- AI接口：OpenAI GPT-4
+- 容器：Docker + Devbox（开发环境）
+## 接口示例
+- `POST /api/article` ：创建文章
+- `GET /api/articles` ：获取文章列表
+- `POST /api/article/generate` ：AI自动生成文章
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# SmartWardrobe AI 开发者指南与技术规格
+
+
 
 
 
 ## 2.核心功能模块需求
 
-### 2.1用户认证与管理 (User Center)
-
-**需求描述：** 前端需要识别用户身份，以隔离不同用户的衣橱数据。
-
-- **注册/登录**：支持手机+邮箱+密码的注册登录流程。
-- **鉴权机制**：使用 JWT (JSON Web Token) 进行无状态认证。
-- **个人画像**：存储用户的身高、体重、肤色特征（用于辅助 AI 试穿生成）。
+- 
 
 **数据落地要求：**
 
@@ -374,7 +534,38 @@ CREATE TABLE `sys_ai_model` (
      3. 将“天气 + 用户诉求 + 衣物清单”组装成 Prompt 发送给 Gemini。
    - **输出**：推荐文本 + 选中的衣物 ID 列表。
 
-## 3.数据库设计
+3.数据库设计
+
+
+
+
+
+
+
+### 2.5后端管理系统
+
+#### 用户管理
+
+```sql
+DROP TABLE IF EXISTS `sys_user`;
+
+CREATE TABLE `sys_user` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `username` varchar(64) NOT NULL COMMENT '用户名',
+  `password` varchar(128) NOT NULL COMMENT '密码(BCrypt加密)',
+  `nickname` varchar(64) DEFAULT NULL COMMENT '昵称',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
+  `status` tinyint(1) DEFAULT 1 COMMENT '状态:1启用 0禁用',
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='后台管理员表';
+
+-- 插入默认管理员: admin / 123456
+INSERT INTO `sys_user` (`id`, `username`, `password`, `nickname`, `status`) 
+VALUES (1, 'admin', '$2a$10$7JB720yubVSZv5W8vNGkarOu7kwyWAHQO0afT98m.H.Y/s.u.0.u', '超级管理员', 1);
+```
 
 
 
