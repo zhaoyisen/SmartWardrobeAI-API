@@ -1,15 +1,16 @@
 package com.smartwardrobeai.app.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.smartwardrobeai.common.BusinessException;
 import com.smartwardrobeai.app.mapper.UserMapper;
 import com.smartwardrobeai.app.model.dto.AuthResponse;
 import com.smartwardrobeai.app.model.dto.EmailRegisterRequest;
 import com.smartwardrobeai.app.model.dto.LoginRequest;
 import com.smartwardrobeai.app.model.dto.SmsLoginRequest;
 import com.smartwardrobeai.app.model.entity.User;
+import com.smartwardrobeai.common.BusinessException;
 import com.smartwardrobeai.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ import java.util.UUID;
  * 认证服务
  * 处理注册、登录及 Token 颁发逻辑
  */
+@Slf4j
 @Service
 @RequiredArgsConstructor // Lombok: 自动生成包含 final 字段的构造函数，实现 Spring 构造器注入
 public class AuthService {
@@ -65,31 +67,38 @@ public class AuthService {
      */
     @Transactional(rollbackFor = Exception.class)
     public AuthResponse loginOrRegisterBySms(SmsLoginRequest request) {
-        // 1. 校验短信验证码
-        verificationService.verifyCode(request.phone(), "sms", request.verifyCode());
+        try {
+            // 1. 校验短信验证码
+            verificationService.verifyCode(request.phone(), "sms", request.verifyCode());
+            log.info("短信校验成功");
 
-        // 2. 查询用户是否存在
-        User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
-                .eq(User::getPhone, request.phone()));
+            // 2. 查询用户是否存在
+            User user = userMapper.selectOne(new LambdaQueryWrapper<User>()
+                    .eq(User::getPhone, request.phone()));
 
-        if (user == null) {
-            // --- 注册流程 ---
-            // 自动生成一个用户名，例如: User_尾号4位
-            String randomSuffix = request.phone().substring(7);
-            String autoUsername = "User_" + randomSuffix + "_" + UUID.randomUUID().toString().substring(0, 4);
+            if (user == null) {
+                log.info("用户不存在，开始注册");
+                // --- 注册流程 ---
+                // 自动生成一个用户名，例如: User_尾号4位
+                String randomSuffix = request.phone().substring(7);
+                String autoUsername = "User_" + randomSuffix + "_" + UUID.randomUUID().toString().substring(0, 4);
 
-            user = User.builder()
-                    .phone(request.phone())
-                    .username(autoUsername)
-                    .passwordHash(null) // ⚠️ 关键：密码为空
-                    .build();
+                user = User.builder()
+                        .phone(request.phone())
+                        .username(autoUsername)
+                        .passwordHash(null) // ⚠️ 关键：密码为空
+                        .build();
 
-            userMapper.insert(user);
+                userMapper.insert(user);
+            }
+
+            // --- 登录流程 (无论是新用户还是老用户，验证码通过了就发 Token) ---
+            String token = jwtUtil.generateToken(user.getId(), user.getPhone());
+            return new AuthResponse(token, user.getId(), user.getUsername());
+        } catch (Exception e) {
+            log.error("短信登录/注册失败:{}", e.getMessage());
+            throw new BusinessException("短信登录/注册失败");
         }
-
-        // --- 登录流程 (无论是新用户还是老用户，验证码通过了就发 Token) ---
-        String token = jwtUtil.generateToken(user.getId(), user.getPhone());
-        return new AuthResponse(token, user.getId(), user.getUsername());
     }
 
 
