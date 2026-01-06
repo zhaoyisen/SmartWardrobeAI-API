@@ -68,4 +68,9 @@ public class User extends BaseEntity {
      */
     private Integer weight;
 
+    /**
+     * 状态 (1启用 0禁用)
+     */
+    private Integer status;
+
 }
