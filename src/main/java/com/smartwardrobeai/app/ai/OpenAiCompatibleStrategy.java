@@ -2,6 +2,8 @@ package com.smartwardrobeai.app.ai;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
+import com.smartwardrobeai.admin.model.entity.SysCategoryStrategy;
+import com.smartwardrobeai.admin.service.SysCategoryStrategyService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -12,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * 通用 OpenAI 协议兼容策略实现 (The Real Gun)
@@ -28,14 +31,16 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
     // ✅ 配置被存储在这里，作为成员变量
     private final AiModelConfig config;
     private final RestTemplate restTemplate;
+    private final SysCategoryStrategyService categoryStrategyService;
 
     /**
      * 构造函数 (由工厂调用)
      * 在这里接收配置，并"记住"它
      */
-    public OpenAiCompatibleStrategy(AiModelConfig config, RestTemplate restTemplate) {
+    public OpenAiCompatibleStrategy(AiModelConfig config, RestTemplate restTemplate, SysCategoryStrategyService categoryStrategyService) {
         this.config = config;
         this.restTemplate = restTemplate;
+        this.categoryStrategyService = categoryStrategyService;
     }
 
     @Override
@@ -86,18 +91,22 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
         contentList.add(Map.of("type", "image_url", "image_url", imgMap));
 
         // --- Prompt ---
-        String prompt = """
-            你是一个时尚专家。请分析图中的衣物。
-            严格返回以下 JSON 格式，不要 Markdown：
-            {
-                "category": "请从列表选择: T-shirt, Shirt, Hoodie, Sweater, Jacket, Coat, Jeans, Pants, Shorts, Skirt, Dress, Sneakers, Boots, Hat, Bag",
-                "color": "主色调英文",
-                "season": "适用季节英文",
-                "fitType": "Regular/Loose/Slim/Oversize",
-                "viewType": "Flat/Model/Hanger"
-            }
-            """;
+        // 从数据库动态获取品类列表
+        String categoryList = getCategoryListForPrompt();
+        String prompt = String.format("""
+                你是一个时尚专家。请分析图中的衣物。
+                严格返回以下 JSON 格式，不要 Markdown：
+                {
+                    "category": "请从列表选择: %s",
+                    "color": "主色调英文",
+                    "season": "适用季节英文",
+                    "fitType": "Regular/Loose/Slim/Oversize",
+                    "viewType": "Flat/Model/Hanger"
+                }
+                """, categoryList);
         contentList.add(Map.of("type", "text", "text", prompt));
+        // TODO season fitType viewType换成字典
+
 
         // --- Message ---
         Map<String, Object> userMessage = new HashMap<>();
@@ -131,10 +140,7 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
             throw new RuntimeException("AI 响应格式异常: 无 choices 字段");
         }
 
-        String contentStr = jsonResponse.getJSONArray("choices")
-                .getJSONObject(0)
-                .getJSONObject("message")
-                .getString("content");
+        String contentStr = jsonResponse.getJSONArray("choices").getJSONObject(0).getJSONObject("message").getString("content");
 
         // 提取 JSON (应对思考过程的干扰)
         String cleanJson = extractJsonBlock(contentStr);
@@ -165,5 +171,22 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
 
         // 3. 兜底
         return text;
+    }
+
+    /**
+     * 从数据库获取品类列表，用于构建 AI Prompt
+     *
+     * @return 品类代码列表，用逗号分隔（如 "T-shirt, Shirt, Hoodie, ..."）
+     */
+    private String getCategoryListForPrompt() {
+        try {
+            List<SysCategoryStrategy> strategies = categoryStrategyService.getAllEnabled();
+            // 过滤掉 Unknown，只返回实际品类
+            return strategies.stream().filter(s -> !"Unknown".equalsIgnoreCase(s.getCategoryCode())).map(SysCategoryStrategy::getCategoryCode).collect(Collectors.joining(", "));
+        } catch (Exception e) {
+            log.error("获取品类列表失败，使用默认列表", e);
+            // 降级处理：返回硬编码的默认列表
+            return "T-shirt, Shirt, Hoodie, Sweater, Jacket, Coat, Jeans, Pants, Shorts, Skirt, Dress, Sneakers, Boots, Hat, Bag";
+        }
     }
 }

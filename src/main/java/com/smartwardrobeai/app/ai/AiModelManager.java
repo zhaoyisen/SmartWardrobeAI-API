@@ -2,6 +2,7 @@ package com.smartwardrobeai.app.ai;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.smartwardrobeai.admin.mapper.SysAiModelMapper;
+import com.smartwardrobeai.admin.service.SysCategoryStrategyService;
 import com.smartwardrobeai.app.model.dto.AiExecutionDTO;
 import com.smartwardrobeai.admin.model.entity.SysAiModel;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class AiModelManager {
 
     private final SysAiModelMapper sysAiModelMapper;
     private final RestTemplate restTemplate;
+    private final SysCategoryStrategyService categoryStrategyService;
 
     /**
      * 创建 AI 分析策略
@@ -53,7 +55,7 @@ public class AiModelManager {
 
         // 4. 实例化策略
         // 目前我们只有 OpenAI 兼容策略，如果以后接入文心一言SDK版，可以在这里 switch case
-        return new OpenAiCompatibleStrategy(config, restTemplate);
+        return new OpenAiCompatibleStrategy(config, restTemplate, categoryStrategyService);
     }
 
     /**

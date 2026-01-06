@@ -1,6 +1,5 @@
 package com.smartwardrobeai.app.model.vo;
 
-import com.smartwardrobeai.app.model.enums.RegionEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
@@ -27,8 +26,8 @@ public record ClothingAnalysisVO(
         @Schema(description = "识别出的品类 (Category)", example = "T-shirt")
         String category,
 
-        @Schema(description = "自动推断的部位 (Region)", example = "TOP")
-        RegionEnum region,
+        @Schema(description = "自动推断的部位 (Region字典值)", example = "TOP")
+        String region,
 
         @Schema(description = "自动推断的建议层级", example = "2")
         Integer defaultLayer,

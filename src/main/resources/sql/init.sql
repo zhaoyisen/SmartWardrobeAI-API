@@ -257,5 +257,93 @@ VALUES (1, 'gender', '男', 'male', 'male, man', 1, 1),
        (3, 'clothing_color', '酒红', 'burgundy', 'dark red, burgundy, wine red', 2, 1),
        (3, 'clothing_color', '蓝色', 'blue', 'blue, azure, sky blue', 3, 1);
 
+-- ================= 品类策略相关字典 =================
+-- 添加服装部位字典类型
+INSERT INTO `sys_dict_type` (`dict_type`, `dict_name`, `remark`, `sort`, `status`)
+VALUES ('clothing_region', '服装部位', '服装部位字典，用于品类策略', 5, 1);
+
+-- 添加服装层级字典类型
+INSERT INTO `sys_dict_type` (`dict_type`, `dict_name`, `remark`, `sort`, `status`)
+VALUES ('clothing_layer', '服装层级', '服装层级字典，用于品类策略', 6, 1);
+
+-- 插入服装部位字典数据
+-- 使用子查询获取字典类型ID
+INSERT INTO `sys_dict_data` (`dict_type_id`, `dict_type`, `dict_label`, `dict_value`, `sort`, `status`)
+SELECT id, 'clothing_region', '上装', 'TOP', 1, 1 FROM sys_dict_type WHERE dict_type = 'clothing_region'
+UNION ALL
+SELECT id, 'clothing_region', '下装', 'BOTTOM', 2, 1 FROM sys_dict_type WHERE dict_type = 'clothing_region'
+UNION ALL
+SELECT id, 'clothing_region', '连体/全身', 'DRESS', 3, 1 FROM sys_dict_type WHERE dict_type = 'clothing_region'
+UNION ALL
+SELECT id, 'clothing_region', '鞋履', 'SHOES', 4, 1 FROM sys_dict_type WHERE dict_type = 'clothing_region'
+UNION ALL
+SELECT id, 'clothing_region', '配饰', 'ACCESSORY', 5, 1 FROM sys_dict_type WHERE dict_type = 'clothing_region';
+
+-- 插入服装层级字典数据
+INSERT INTO `sys_dict_data` (`dict_type_id`, `dict_type`, `dict_label`, `dict_value`, `sort`, `status`)
+SELECT id, 'clothing_layer', '贴身/内搭', '1', 1, 1 FROM sys_dict_type WHERE dict_type = 'clothing_layer'
+UNION ALL
+SELECT id, 'clothing_layer', '常规/中层', '2', 2, 1 FROM sys_dict_type WHERE dict_type = 'clothing_layer'
+UNION ALL
+SELECT id, 'clothing_layer', '外套/最外层', '3', 3, 1 FROM sys_dict_type WHERE dict_type = 'clothing_layer'
+UNION ALL
+SELECT id, 'clothing_layer', '配饰/顶层', '4', 4, 1 FROM sys_dict_type WHERE dict_type = 'clothing_layer';
+
+-- ================= 品类策略表 =================
+DROP TABLE IF EXISTS `sys_category_strategy`;
+
+CREATE TABLE `sys_category_strategy`
+(
+    `id`            bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+    `category_code` varchar(64)  NOT NULL COMMENT '品类代码（唯一，如 T-shirt）',
+    `category_desc` varchar(64)  NOT NULL COMMENT '中文描述（如 T恤）',
+    `region`        varchar(32)  NOT NULL COMMENT '部位字典值（关联 sys_dict_data.dict_value，如 TOP）',
+    `layer`         varchar(32)  NOT NULL COMMENT '层级字典值（关联 sys_dict_data.dict_value，如 MIDDLE）',
+    `sort`           int(11) DEFAULT 0 COMMENT '排序值',
+    `status`         tinyint(1) DEFAULT 1 COMMENT '状态：1启用 0禁用',
+    `remark`         varchar(255) DEFAULT NULL COMMENT '备注说明',
+    `create_time`    datetime     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time`    datetime     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_category_code` (`category_code`),
+    KEY             `idx_region` (`region`),
+    KEY             `idx_layer` (`layer`),
+    KEY             `idx_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='品类策略配置表';
+
+-- 初始化品类策略数据
+INSERT INTO `sys_category_strategy` (`category_code`, `category_desc`, `region`, `layer`, `sort`, `status`, `remark`)
+VALUES 
+    -- 上装 (TOP)
+    ('T-shirt', 'T恤', 'TOP', '2', 1, 1, '上装-常规层'),
+    ('Shirt', '衬衫', 'TOP', '2', 2, 1, '上装-常规层'),
+    ('Hoodie', '卫衣', 'TOP', '2', 3, 1, '上装-常规层'),
+    ('Sweater', '毛衣/针织衫', 'TOP', '2', 4, 1, '上装-常规层'),
+    ('Vest', '背心/马甲', 'TOP', '1', 5, 1, '上装-内搭层'),
+    -- 外套 (TOP - OUTER)
+    ('Jacket', '夹克', 'TOP', '3', 6, 1, '上装-外套层'),
+    ('Coat', '大衣/风衣', 'TOP', '3', 7, 1, '上装-外套层'),
+    ('Blazer', '西装外套', 'TOP', '3', 8, 1, '上装-外套层'),
+    ('DownJacket', '羽绒服', 'TOP', '3', 9, 1, '上装-外套层'),
+    -- 下装 (BOTTOM)
+    ('Jeans', '牛仔裤', 'BOTTOM', '2', 10, 1, '下装-常规层'),
+    ('Pants', '休闲裤/西裤', 'BOTTOM', '2', 11, 1, '下装-常规层'),
+    ('Shorts', '短裤', 'BOTTOM', '2', 12, 1, '下装-常规层'),
+    ('Skirt', '半身裙', 'BOTTOM', '2', 13, 1, '下装-常规层'),
+    -- 全身 (DRESS)
+    ('Dress', '连衣裙', 'DRESS', '2', 14, 1, '全身-常规层'),
+    ('Jumpsuit', '连体裤', 'DRESS', '2', 15, 1, '全身-常规层'),
+    -- 鞋履 (SHOES)
+    ('Sneakers', '运动鞋', 'SHOES', '2', 16, 1, '鞋履-常规层'),
+    ('Boots', '靴子', 'SHOES', '2', 17, 1, '鞋履-常规层'),
+    ('Sandals', '凉鞋', 'SHOES', '2', 18, 1, '鞋履-常规层'),
+    ('Heels', '高跟鞋', 'SHOES', '2', 19, 1, '鞋履-常规层'),
+    -- 配饰 (ACCESSORY)
+    ('Hat', '帽子', 'ACCESSORY', '4', 20, 1, '配饰-顶层'),
+    ('Scarf', '围巾', 'ACCESSORY', '4', 21, 1, '配饰-顶层'),
+    ('Bag', '包袋', 'ACCESSORY', '4', 22, 1, '配饰-顶层'),
+    -- 兜底默认值
+    ('Unknown', '未知', 'TOP', '2', 999, 1, '兜底默认值');
+
 
 

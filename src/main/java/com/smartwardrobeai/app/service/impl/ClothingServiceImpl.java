@@ -2,6 +2,8 @@ package com.smartwardrobeai.app.service.impl;
 
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.smartwardrobeai.admin.model.entity.SysCategoryStrategy;
+import com.smartwardrobeai.admin.service.SysCategoryStrategyService;
 import com.smartwardrobeai.app.ai.AiAnalysisStrategy;
 import com.smartwardrobeai.app.ai.AiModelManager;
 import com.smartwardrobeai.app.mapper.ClothingMapper;
@@ -9,7 +11,6 @@ import com.smartwardrobeai.app.model.dto.AiExecutionDTO;
 import com.smartwardrobeai.app.model.dto.ClothingCreateDTO;
 import com.smartwardrobeai.app.model.entity.Clothing;
 import com.smartwardrobeai.app.model.entity.SysFile;
-import com.smartwardrobeai.app.model.enums.CategoryStrategy;
 import com.smartwardrobeai.app.model.vo.ClothingAnalysisVO;
 import com.smartwardrobeai.app.service.ClothingService;
 import com.smartwardrobeai.app.service.FileStorageService;
@@ -27,6 +28,8 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
     private final FileStorageService fileStorageService;
     //  AI 管理器
     private final AiModelManager aiModelManager;
+    // 品类策略服务
+    private final SysCategoryStrategyService categoryStrategyService;
 
     /**
      * Step 1: 上传图片并进行智能分析
@@ -49,17 +52,18 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
             // 策略内部会自动处理 Base64、HTTP 请求、JSON 解析
             JSONObject aiData = strategy.analyze(file);
 
-            // 4. 匹配本地分类策略
-            CategoryStrategy catStrategy = CategoryStrategy.match(aiData.getString("category"));
+            // 4. 匹配本地分类策略（从数据库查询，带缓存）
+            SysCategoryStrategy catStrategy = categoryStrategyService.match(aiData.getString("category"));
+
 
             //返回vo
             return new ClothingAnalysisVO(
                     sysFile.getId(),
                     sysFile.getFileUrl(),
                     null, null,
-                    catStrategy.getCode(),
+                    catStrategy.getCategoryCode(),
                     catStrategy.getRegion(),
-                    catStrategy.getLayer().getCode(),
+                    Integer.valueOf(catStrategy.getLayer()),
                     aiData.getString("color"),
                     aiData.getString("season"),
                     aiData.getString("fitType"),
@@ -68,15 +72,17 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
         } catch (Exception e) {
             log.error("AI 分析流程失败", e);
             // 🛡️ 降级处理：依然返回上传成功的图片，但分类信息留空，让用户手动填
+            SysCategoryStrategy unknownStrategy = categoryStrategyService.match("Unknown");
             return new ClothingAnalysisVO(
                     sysFile.getId(), sysFile.getFileUrl(), null, null,
-                    CategoryStrategy.UNKNOWN.getCode(),
-                    CategoryStrategy.UNKNOWN.getRegion(),
-                    CategoryStrategy.UNKNOWN.getLayer().getCode(),
+                    unknownStrategy.getCategoryCode(),
+                    unknownStrategy.getRegion(),
+                    Integer.valueOf(unknownStrategy.getLayer()),
                     "", "", "Regular", "Flat"
             );
         }
     }
+
 
     @Override
     public boolean createClothing(ClothingCreateDTO dto) {
