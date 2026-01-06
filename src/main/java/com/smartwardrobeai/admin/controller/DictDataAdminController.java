@@ -1,16 +1,24 @@
 package com.smartwardrobeai.admin.controller;
 
+import com.smartwardrobeai.admin.model.dto.DictDataImportDTO;
 import com.smartwardrobeai.admin.model.dto.DictDataQueryDTO;
 import com.smartwardrobeai.admin.model.dto.DictDataSaveDTO;
+import com.smartwardrobeai.admin.model.vo.DictDataImportResultVO;
 import com.smartwardrobeai.admin.model.vo.DictDataVO;
 import com.smartwardrobeai.admin.service.SysDictDataService;
 import com.smartwardrobeai.common.Result;
 import com.smartwardrobeai.common.model.entity.PageResult;
+import com.smartwardrobeai.common.validation.NotEmptyFile;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +27,7 @@ import java.util.Map;
 @RequestMapping("/api/admin/dict-data")
 @Tag(name = "【后台】字典数据管理")
 @RequiredArgsConstructor
+@Validated
 public class DictDataAdminController {
 
     private final SysDictDataService dictDataService;
@@ -80,6 +89,22 @@ public class DictDataAdminController {
     @Operation(summary = "根据字典类型ID获取启用的字典数据列表", description = "用于前端下拉框，包含promptText")
     public Result<List<Map<String, String>>> getListByDictTypeId(@PathVariable Long dictTypeId) {
         return Result.success(dictDataService.getListByDictTypeId(dictTypeId));
+    }
+
+    @PostMapping("/import")
+    @Operation(summary = "导入字典数据", description = "从Excel文件批量导入字典数据，支持skip(跳过重复)和update(更新重复)两种策略", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE)))
+    public Result<DictDataImportResultVO> importData(@RequestParam("file") @NotEmptyFile(message = "文件不能为空") MultipartFile file, @RequestParam(value = "duplicateStrategy", defaultValue = "skip") String duplicateStrategy) {
+        DictDataImportDTO importDTO = new com.smartwardrobeai.admin.model.dto.DictDataImportDTO();
+        importDTO.setFile(file);
+        importDTO.setDuplicateStrategy(duplicateStrategy);
+        DictDataImportResultVO result = dictDataService.importFromExcel(importDTO);
+        return Result.success(result);
+    }
+
+    @GetMapping("/template")
+    @Operation(summary = "下载导入模板", description = "下载Excel导入模板文件，包含示例数据")
+    public void downloadTemplate(HttpServletResponse response) {
+        dictDataService.downloadTemplate(response);
     }
 }
 

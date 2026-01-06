@@ -1,11 +1,14 @@
 package com.smartwardrobeai.admin.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.smartwardrobeai.admin.model.dto.DictDataImportDTO;
 import com.smartwardrobeai.admin.model.dto.DictDataQueryDTO;
 import com.smartwardrobeai.admin.model.dto.DictDataSaveDTO;
 import com.smartwardrobeai.admin.model.entity.SysDictData;
+import com.smartwardrobeai.admin.model.vo.DictDataImportResultVO;
 import com.smartwardrobeai.admin.model.vo.DictDataVO;
 import com.smartwardrobeai.common.model.entity.PageResult;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -52,5 +55,20 @@ public interface SysDictDataService extends IService<SysDictData> {
      * @return 包含 value(dictValue), label(dictLabel), promptText 的列表
      */
     List<Map<String, String>> getListByDictTypeId(Long dictTypeId);
+
+    /**
+     * 从Excel文件导入字典数据
+     *
+     * @param importDTO 导入请求DTO
+     * @return 导入结果
+     */
+    DictDataImportResultVO importFromExcel(DictDataImportDTO importDTO);
+
+    /**
+     * 下载导入模板
+     *
+     * @param response HTTP响应
+     */
+    void downloadTemplate(HttpServletResponse response);
 }
 

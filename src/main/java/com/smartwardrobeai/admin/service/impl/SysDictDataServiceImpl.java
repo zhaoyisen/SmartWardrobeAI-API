@@ -1,6 +1,8 @@
 package com.smartwardrobeai.admin.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.write.style.column.LongestMatchColumnWidthStyleStrategy;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
@@ -8,21 +10,31 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.smartwardrobeai.admin.mapper.SysDictDataMapper;
 import com.smartwardrobeai.admin.mapper.SysDictTypeMapper;
+import com.smartwardrobeai.admin.model.dto.DictDataImportDTO;
 import com.smartwardrobeai.admin.model.dto.DictDataQueryDTO;
 import com.smartwardrobeai.admin.model.dto.DictDataSaveDTO;
 import com.smartwardrobeai.admin.model.entity.SysDictData;
 import com.smartwardrobeai.admin.model.entity.SysDictType;
+import com.smartwardrobeai.admin.model.vo.DictDataExcelVO;
+import com.smartwardrobeai.admin.model.vo.DictDataImportResultVO;
 import com.smartwardrobeai.admin.model.vo.DictDataVO;
 import com.smartwardrobeai.admin.service.SysDictDataService;
 import com.smartwardrobeai.admin.service.SysDictTypeService;
 import com.smartwardrobeai.common.BusinessException;
 import com.smartwardrobeai.common.model.entity.PageResult;
 import com.smartwardrobeai.utils.QueryGenerator;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -156,6 +168,95 @@ public class SysDictDataServiceImpl extends ServiceImpl<SysDictDataMapper, SysDi
             map.put("promptText", item.getPromptText()); // AI提示词补充
             return map;
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public DictDataImportResultVO importFromExcel(DictDataImportDTO importDTO) {
+        MultipartFile file = importDTO.getFile();
+        if (file == null || file.isEmpty()) {
+            throw new BusinessException("上传文件不能为空");
+        }
+
+        // 验证文件格式
+        String originalFilename = file.getOriginalFilename();
+        if (originalFilename == null || 
+            (!originalFilename.endsWith(".xlsx") && !originalFilename.endsWith(".xls"))) {
+            throw new BusinessException("文件格式不正确，仅支持 .xlsx 或 .xls 格式");
+        }
+
+        String duplicateStrategy = StringUtils.hasText(importDTO.getDuplicateStrategy()) 
+                ? importDTO.getDuplicateStrategy() 
+                : "skip";
+
+        if (!"skip".equals(duplicateStrategy) && !"update".equals(duplicateStrategy)) {
+            throw new BusinessException("重复数据处理策略参数错误，仅支持 skip 或 update");
+        }
+
+        try {
+            // 创建监听器
+            DictDataExcelListener listener = new DictDataExcelListener(
+                    this.baseMapper, 
+                    dictTypeMapper, 
+                    duplicateStrategy
+            );
+
+            // 读取Excel文件
+            EasyExcel.read(file.getInputStream(), DictDataExcelVO.class, listener)
+                    .sheet()
+                    .doRead();
+
+            // 返回导入结果
+            return listener.getImportResult();
+        } catch (IOException e) {
+            log.error("读取Excel文件失败", e);
+            throw new BusinessException("读取Excel文件失败: " + e.getMessage());
+        } catch (Exception e) {
+            log.error("导入字典数据失败", e);
+            throw new BusinessException("导入字典数据失败: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void downloadTemplate(HttpServletResponse response) {
+        try {
+            // 设置响应头
+            response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.setCharacterEncoding("utf-8");
+            String fileName = URLEncoder.encode("字典数据导入模板", StandardCharsets.UTF_8)
+                    .replaceAll("\\+", "%20");
+            response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+
+            // 创建示例数据
+            List<DictDataExcelVO> templateData = new ArrayList<>();
+            DictDataExcelVO example1 = new DictDataExcelVO();
+            example1.setDictType("clothing_color");
+            example1.setDictLabel("红色");
+            example1.setDictValue("red");
+            example1.setPromptText("dark red, crimson, scarlet");
+            example1.setRemark("基础颜色");
+            example1.setSort(1);
+            example1.setStatus(1);
+            templateData.add(example1);
+
+            DictDataExcelVO example2 = new DictDataExcelVO();
+            example2.setDictType("clothing_color");
+            example2.setDictLabel("蓝色");
+            example2.setDictValue("blue");
+            example2.setPromptText("navy blue, sky blue");
+            example2.setRemark("基础颜色");
+            example2.setSort(2);
+            example2.setStatus(1);
+            templateData.add(example2);
+
+            // 写入Excel
+            EasyExcel.write(response.getOutputStream(), DictDataExcelVO.class)
+                    .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
+                    .sheet("字典数据")
+                    .doWrite(templateData);
+        } catch (IOException e) {
+            log.error("下载模板失败", e);
+            throw new BusinessException("下载模板失败: " + e.getMessage());
+        }
     }
 }
 
