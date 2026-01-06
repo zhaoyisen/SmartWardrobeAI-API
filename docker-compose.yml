@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  smart-wardrobe-backend:
+    # 镜像构建上下文：使用当前目录下的 Dockerfile
+    build: .
+    # 容器名称
+    container_name: smart-wardrobe-backend
+    # 总是重启 (防止程序崩溃或服务器重启后服务挂掉)
+    restart: always
+    # 端口映射: 左边是服务器端口 : 右边是容器端口(必须是 9090)
+    ports:
+      - "9090:9090"
+    # 环境变量 (这里的优先级高于 application.yml)
+    environment:
+      - TZ=Asia/Shanghai
+      # 如果你想在不改代码的情况下临时换数据库密码，可以在这里解开注释写：
+      # - SPRING_DATASOURCE_PASSWORD=新密码
+    # 挂载日志 (如果你要在服务器上直接看 logs 文件夹)
+    volumes:
+      - ./logs:/app/logs
