@@ -7,7 +7,7 @@ CREATE TABLE `users`
     `username`      VARCHAR(50)  NOT NULL COMMENT '昵称',
     `email`         VARCHAR(100) UNIQUE COMMENT '邮箱 (登录凭证1)',
     `phone`         VARCHAR(20) UNIQUE COMMENT '手机号 (登录凭证2)',
-    `password_hash` VARCHAR(255) NOT NULL COMMENT 'BCrypt加密密码',
+    `password_hash` VARCHAR(255) COMMENT 'BCrypt加密密码',
     `avatar_url`    VARCHAR(512) COMMENT '头像URL',
     `height`        INT COMMENT '身高(cm)',
     `weight`        INT COMMENT '体重(kg)',
@@ -17,6 +17,8 @@ CREATE TABLE `users`
     INDEX           `idx_email` (`email`),
     INDEX           `idx_phone` (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='app用户核心表';
+
+ALTER TABLE users ADD COLUMN status TINYINT(1) DEFAULT 1 COMMENT '状态:1启用 0禁用';
 
 -- admin用户表
 DROP TABLE IF EXISTS `sys_user`;
@@ -36,7 +38,7 @@ CREATE TABLE `sys_user`
 
 -- 插入默认管理员: admin / 123456
 INSERT INTO `sys_user` (`id`, `username`, `password`, `nickname`, `status`)
-VALUES (1, 'admin', '$2a$10$7JB720yubVSZv5W8vNGkarOu7kwyWAHQO0afT98m.H.Y/s.u.0.u', '超级管理员', 1);
+VALUES (1, 'admin', '$2a$10$uLuIUy4O3hymWIK20NlrWO7ksp6YtuWiGULCOAMAtsRyBHLhNZJUW', '超级管理员', 1);
 
 
 -- #附件表
