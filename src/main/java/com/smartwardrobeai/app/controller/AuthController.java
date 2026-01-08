@@ -4,6 +4,7 @@ import com.smartwardrobeai.app.model.dto.*;
 import com.smartwardrobeai.common.Result;
 import com.smartwardrobeai.app.service.AuthService;
 import com.smartwardrobeai.app.service.VerificationService;
+import com.smartwardrobeai.common.annotation.NoRepeatSubmit;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -29,6 +30,7 @@ public class AuthController {
      */
     @Operation(summary = "发送验证码", description = "支持发送短信验证码或邮箱验证码，有效期5分钟")
     @PostMapping("/send-code")
+    @NoRepeatSubmit(timeout = 60000)
     public Result<String> sendCode(@RequestBody @Valid SendCodeRequest request) {
         verificationService.sendCode(request.target(), request.type());
         return Result.success("验证码发送成功");
