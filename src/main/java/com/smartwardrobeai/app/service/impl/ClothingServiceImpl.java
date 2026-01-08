@@ -41,7 +41,7 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
     @Override
     public ClothingAnalysisVO uploadAndAnalyze(MultipartFile file, AiExecutionDTO config) {
         log.info("收到图片分析请求: {}", file.getOriginalFilename());
-
+        log.info("tt");
         // 1. MinIO 存底 (图片必须先存下来)
         SysFile sysFile = fileStorageService.upload(file);
         try {
