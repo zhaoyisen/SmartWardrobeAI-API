@@ -62,6 +62,9 @@ public class SecurityConfig {
                         // 允许匿名访问的接口 (注册、登录)
                         .requestMatchers("api/app/auth/**","api/admin/auth/**")
                         .permitAll()
+                        // 允许匿名访问健康检查接口
+                        .requestMatchers("api/app/health")
+                        .permitAll()
                         // 允许访问静态资源或错误页面 (可选)
                         .requestMatchers("/error").permitAll()
                         //放行 Swagger 相关路径

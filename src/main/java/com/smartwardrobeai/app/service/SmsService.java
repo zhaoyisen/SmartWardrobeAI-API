@@ -1,8 +1,9 @@
 package com.smartwardrobeai.app.service;
 
-import com.aliyun.dypnsapi20170525.Client;
+import com.aliyun.credentials.Client;
 import com.aliyun.teautil.models.RuntimeOptions;
 import com.aliyun.tea.TeaException;
+import com.aliyun.teaopenapi.models.Config;
 import com.smartwardrobeai.common.BusinessException;
 import com.tencentcloudapi.common.exception.TencentCloudSDKException;
 import com.tencentcloudapi.sms.v20210111.SmsClient;
@@ -22,10 +23,6 @@ public class SmsService {
     @Qualifier("smsClient")
     private SmsClient tencentSmsClient;
 
-    @Autowired(required = false)
-    @Qualifier("aliyunSmsClient")
-    private com.aliyun.dypnsapi20170525.Client aliyunSmsClient;
-
     @Value("${sms.provider:aliyun}")
     private String provider; // 短信服务商：aliyun 或 tencent
 
@@ -40,6 +37,12 @@ public class SmsService {
     private String tencentTemplateId;
 
     // 阿里云号码认证服务配置
+    @Value("${aliyun.sms.access-key-id:}")
+    private String aliyunAccessKeyId;
+
+    @Value("${aliyun.sms.access-key-secret:}")
+    private String aliyunAccessKeySecret;
+
     @Value("${aliyun.sms.sign-name:}")
     private String aliyunSignName;
 
@@ -51,6 +54,12 @@ public class SmsService {
 
     @Value("${aliyun.sms.country-code:86}")
     private String aliyunCountryCode;
+
+    @Value("${aliyun.sms.endpoint:dypnsapi.aliyuncs.com}")
+    private String aliyunEndpoint;
+
+    // 阿里云客户端缓存（懒加载单例，使用volatile确保线程安全）
+    private volatile com.aliyun.dypnsapi20170525.Client aliyunSmsClient;
 
     /**
      * 发送验证码短信
@@ -70,17 +79,17 @@ public class SmsService {
 
     /**
      * 使用阿里云号码认证服务发送验证码短信
+     * 客户端使用懒加载单例模式，第一次使用时创建并缓存
      */
     private void sendByAliyun(String phone, String code) {
-        if (aliyunSmsClient == null) {
-            throw new BusinessException("阿里云号码认证服务客户端未配置");
-        }
-
         if (aliyunSchemeName == null || aliyunSchemeName.isEmpty()) {
             throw new BusinessException("阿里云方案名称(scheme-name)未配置");
         }
 
         try {
+            // 获取客户端（懒加载单例，第一次使用时创建）
+            com.aliyun.dypnsapi20170525.Client client = getAliyunClient();
+
             // 构建发送短信验证码请求
             com.aliyun.dypnsapi20170525.models.SendSmsVerifyCodeRequest request = 
                 new com.aliyun.dypnsapi20170525.models.SendSmsVerifyCodeRequest()
@@ -93,7 +102,7 @@ public class SmsService {
 
             RuntimeOptions runtime = new RuntimeOptions();
             com.aliyun.dypnsapi20170525.models.SendSmsVerifyCodeResponse response = 
-                aliyunSmsClient.sendSmsVerifyCodeWithOptions(request, runtime);
+                client.sendSmsVerifyCodeWithOptions(request, runtime);
 
             if (response != null && response.getBody() != null) {
                 com.aliyun.dypnsapi20170525.models.SendSmsVerifyCodeResponseBody body = response.getBody();
@@ -130,6 +139,43 @@ public class SmsService {
             }
             throw new BusinessException("短信发送失败: " + e.getMessage());
         }
+    }
+
+    /**
+     * 获取阿里云号码认证服务客户端（懒加载单例模式）
+     * 使用双重检查锁定（Double-Checked Locking）确保线程安全
+     * 参考用户提供的SDK示例实现
+     */
+    private com.aliyun.dypnsapi20170525.Client getAliyunClient() throws Exception {
+        // 第一次检查（避免不必要的同步）
+        if (aliyunSmsClient == null) {
+            synchronized (this) {
+                // 第二次检查（确保只创建一个实例）
+                if (aliyunSmsClient == null) {
+                    // 使用凭据初始化（支持环境变量、配置文件等多种方式）
+                    Client credential = new Client();
+                    
+                    // 创建Config对象
+                    Config config = new Config()
+                            .setCredential(credential);
+                    
+                    // 如果提供了AccessKeyId和AccessKeySecret，直接在Config上设置
+                    if (aliyunAccessKeyId != null && !aliyunAccessKeyId.isEmpty() && 
+                        aliyunAccessKeySecret != null && !aliyunAccessKeySecret.isEmpty()) {
+                        config.setAccessKeyId(aliyunAccessKeyId)
+                              .setAccessKeySecret(aliyunAccessKeySecret);
+                    }
+                    
+                    // Endpoint 设置为号码认证服务端点，请参考 https://api.aliyun.com/product/Dypnsapi
+                    config.setEndpoint(aliyunEndpoint);
+                    
+                    // 创建客户端实例并赋值给volatile字段（保证可见性）
+                    aliyunSmsClient = new com.aliyun.dypnsapi20170525.Client(config);
+                    log.info("阿里云号码认证服务客户端已创建");
+                }
+            }
+        }
+        return aliyunSmsClient;
     }
 
     /**
