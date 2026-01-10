@@ -133,6 +133,25 @@ minio:
   bucketName: smart-wardrobe-ai
 
 # ----------------------------------------
+# 短信服务配置
+# ----------------------------------------
+sms:
+  provider: aliyun  # 短信服务商：aliyun 或 tencent，默认使用阿里云
+
+# ----------------------------------------
+# 阿里云号码认证服务（支持个人用户发送短信验证码）
+# ----------------------------------------
+aliyun:
+  sms:
+    access-key-id: LTAI5tRgK7kVq5Viqzv5pwex        # 【替换】阿里云 AccessKeyId
+    access-key-secret: U0dzul0nTyzSTrZnBGf9JM7CVSjLop # 【替换】阿里云 AccessKeySecret
+    sign-name: 速通互联验证码                        # 【替换】短信签名名称
+    template-code: 100001         # 【替换】验证码模板 Code（如：100001）
+    scheme-name: 测试方案                      # 【替换】方案名称（在阿里云控制台创建）
+    country-code: 86                          # 国家区号，86表示中国（默认值）
+    endpoint: dypnsapi.aliyuncs.com           # 号码认证服务端点（默认值，通常不需要修改）
+
+# ----------------------------------------
 # 腾讯云短信服务
 # ----------------------------------------
 tencent:

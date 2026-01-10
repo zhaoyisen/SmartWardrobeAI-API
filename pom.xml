@@ -129,7 +129,18 @@
         <dependency>
             <groupId>com.tencentcloudapi</groupId>
             <artifactId>tencentcloud-sdk-java-sms</artifactId>
-            <version>3.1.1032</version>
+            <version>3.1.1357</version>
+        </dependency>
+        <!--阿里云号码认证服务（支持个人用户发送短信验证码）-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>dypnsapi20170525</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-credentials</artifactId>
+            <version>3.0.0</version>
         </dependency>
         <!--七牛存储-->
         <dependency>
