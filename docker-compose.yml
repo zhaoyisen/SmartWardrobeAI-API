@@ -14,6 +14,8 @@ services:
     # 环境变量 (这里的优先级高于 application.yml)
     environment:
       - TZ=Asia/Shanghai
+      - ALIBABA_ACCESS_KEY_ID=${ALIBABA_ACCESS_KEY_ID}
+      - ALIBABA_ACCESS_KEY_SECRET=${ALIBABA_ACCESS_KEY_SECRET}
       # 如果你想在不改代码的情况下临时换数据库密码，可以在这里解开注释写：
       # - SPRING_DATASOURCE_PASSWORD=新密码
     # 挂载日志 (如果你要在服务器上直接看 logs 文件夹)
