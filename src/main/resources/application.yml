@@ -100,7 +100,11 @@ jwt:
   # 密钥必须足够长 (HS256 算法要求至少 32 字节)
   # 建议使用 UUID 生成一个随机串
   secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
-  expiration: 86400000 # 24小时 (毫秒)
+  # 差异化过期时间配置
+  expiration:
+    app: 2592000000    # APP端：30天（毫秒），提升用户体验
+    admin: 14400000    # 管理端：4小时（毫秒），保证安全性
+    default: 86400000  # 默认值：24小时（毫秒），向后兼容
 
 
 # ----------------------------------------
@@ -127,3 +131,15 @@ minio:
   accessKey: admin_minio
   secretKey: minio12345678
   bucketName: smart-wardrobe-ai
+
+# ----------------------------------------
+# 腾讯云短信服务
+# ----------------------------------------
+tencent:
+  sms:
+    secret-id: your-secret-id        # 【替换】腾讯云 SecretId
+    secret-key: your-secret-key      # 【替换】腾讯云 SecretKey
+    region: ap-beijing                # 区域，默认北京，可选：ap-shanghai, ap-guangzhou 等
+    app-id: your-app-id               # 【替换】短信应用 ID (SmsSdkAppId)
+    sign-name: 智能衣橱                # 【替换】短信签名名称
+    template-id: your-template-id    # 【替换】验证码模板 ID

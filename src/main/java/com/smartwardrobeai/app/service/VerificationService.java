@@ -31,6 +31,7 @@ public class VerificationService {
     private static final Duration CODE_TTL = Duration.ofMinutes(5);
     private final RedisTemplate<String, Object> redisTemplate;
     private final JavaMailSender mailSender;
+    private final SmsService smsService;
     // 从配置文件读取发送者账号，避免硬编码
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -110,16 +111,16 @@ public class VerificationService {
     }
 
     /**
-     * 发送短信 (目前是模拟，未来接入阿里云)
+     * 发送短信 (使用腾讯云短信服务)
      */
     private void sendSms(String phone, String code) {
-        // TODO: 这里接入阿里云/腾讯云 SMS SDK
-        // 目前仅打印到控制台
-        log.info("\n\n=========================================");
-        log.info("【模拟短信网关】");
-        log.info(" 目标手机: {}", phone);
-        log.info(" 短信内容: 【智能衣橱】您的验证码是 {}，5分钟内有效。", code);
-        log.info("=========================================\n");
+        try {
+            smsService.sendVerificationCode(phone, code);
+            log.info("====> 短信验证码已发送至: {}", phone);
+        } catch (Exception e) {
+            log.error("短信发送失败 - 手机号: {}", phone, e);
+            throw new BusinessException("短信发送失败，请稍后重试");
+        }
     }
 
 

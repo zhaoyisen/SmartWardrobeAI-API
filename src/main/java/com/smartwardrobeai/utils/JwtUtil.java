@@ -23,8 +23,15 @@ public class JwtUtil {
     @Value("${jwt.secret}")
     private String secret;
 
-    @Value("${jwt.expiration}")
-    private long expiration; // 单位：毫秒
+    // 差异化过期时间配置（单位：毫秒）
+    @Value("${jwt.expiration.app:2592000000}")  // APP端：30天，默认值
+    private long appExpiration;
+
+    @Value("${jwt.expiration.admin:14400000}")  // 管理端：4小时，默认值
+    private long adminExpiration;
+
+    @Value("${jwt.expiration.default:86400000}")  // 默认值：24小时，向后兼容
+    private long defaultExpiration;
 
     /**
      * 生成 SecretKey 对象
@@ -34,6 +41,23 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+
+    /**
+     * 根据用户类型获取对应的过期时间
+     *
+     * @param userType 用户类型 (ADMIN / APP)
+     * @return 过期时间（毫秒）
+     */
+    private long getExpirationByUserType(String userType) {
+        if ("ADMIN".equalsIgnoreCase(userType)) {
+            return adminExpiration;
+        } else if ("APP".equalsIgnoreCase(userType)) {
+            return appExpiration;
+        } else {
+            // 未知类型使用默认值
+            return defaultExpiration;
+        }
+    }
 
     /**
      * 【核心方法】全参数生成 Token
@@ -47,6 +71,9 @@ public class JwtUtil {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", userId);
         claims.put("type", userType); // 🔥 关键：写入身份标识
+
+        // 根据用户类型选择对应的过期时间
+        long expiration = getExpirationByUserType(userType);
 
         return Jwts.builder()
                 .subject(subject)
