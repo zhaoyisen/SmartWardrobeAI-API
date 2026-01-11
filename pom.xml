@@ -137,11 +137,11 @@
             <artifactId>dypnsapi20170525</artifactId>
             <version>2.0.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-credentials</artifactId>
-            <version>3.0.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.aliyun</groupId>-->
+<!--            <artifactId>aliyun-java-sdk-credentials</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--        </dependency>-->
         <!--七牛存储-->
         <dependency>
             <groupId>com.qiniu</groupId>
