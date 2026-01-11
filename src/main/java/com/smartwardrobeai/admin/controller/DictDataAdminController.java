@@ -106,5 +106,12 @@ public class DictDataAdminController {
     public void downloadTemplate(HttpServletResponse response) {
         dictDataService.downloadTemplate(response);
     }
+
+    @PostMapping("/refresh-cache")
+    @Operation(summary = "手动刷新字典缓存", description = "清除所有App端字典缓存（app:dict:type:*），下次查询时会重新从数据库加载")
+    public Result<Void> refreshCache() {
+        dictDataService.refreshCache();
+        return Result.success(null);
+    }
 }
 

@@ -259,6 +259,50 @@ VALUES (1, 'gender', '男', 'male', 'male, man', 1, 1),
        (3, 'clothing_color', '酒红', 'burgundy', 'dark red, burgundy, wine red', 2, 1),
        (3, 'clothing_color', '蓝色', 'blue', 'blue, azure, sky blue', 3, 1);
 
+-- 添加季节字典数据
+INSERT INTO `sys_dict_data` (`dict_type_id`, `dict_type`, `dict_label`, `dict_value`, `prompt_text`, `sort`, `status`)
+SELECT id, 'clothing_season', '春', 'spring', 'spring, spring season', 1, 1 FROM sys_dict_type WHERE dict_type = 'clothing_season'
+UNION ALL
+SELECT id, 'clothing_season', '夏', 'summer', 'summer, summer season', 2, 1 FROM sys_dict_type WHERE dict_type = 'clothing_season'
+UNION ALL
+SELECT id, 'clothing_season', '秋', 'autumn', 'autumn, fall, autumn season', 3, 1 FROM sys_dict_type WHERE dict_type = 'clothing_season'
+UNION ALL
+SELECT id, 'clothing_season', '冬', 'winter', 'winter, winter season', 4, 1 FROM sys_dict_type WHERE dict_type = 'clothing_season';
+
+-- 补充颜色字典数据（标准12色 + 扩展6色）
+INSERT INTO `sys_dict_data` (`dict_type_id`, `dict_type`, `dict_label`, `dict_value`, `prompt_text`, `sort`, `status`)
+SELECT id, 'clothing_color', '橙色', 'orange', 'orange, bright orange', 4, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '黄色', 'yellow', 'yellow, bright yellow', 5, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '绿色', 'green', 'green, bright green', 6, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '青色', 'cyan', 'cyan, turquoise', 7, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '紫色', 'purple', 'purple, violet', 8, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '黑色', 'black', 'black, dark black', 9, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '白色', 'white', 'white, bright white', 10, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '灰色', 'gray', 'gray, grey', 11, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '棕色', 'brown', 'brown, dark brown', 12, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '粉色', 'pink', 'pink, rose', 13, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '米色', 'beige', 'beige, cream', 14, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '卡其', 'khaki', 'khaki, tan', 15, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '深蓝', 'dark_blue', 'dark blue, navy blue', 16, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '浅蓝', 'light_blue', 'light blue, sky blue', 17, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '深灰', 'dark_gray', 'dark gray, dark grey', 18, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color'
+UNION ALL
+SELECT id, 'clothing_color', '浅灰', 'light_gray', 'light gray, light grey', 19, 1 FROM sys_dict_type WHERE dict_type = 'clothing_color';
+
 -- ================= 品类策略相关字典 =================
 -- 添加服装部位字典类型
 INSERT INTO `sys_dict_type` (`dict_type`, `dict_name`, `remark`, `sort`, `status`)

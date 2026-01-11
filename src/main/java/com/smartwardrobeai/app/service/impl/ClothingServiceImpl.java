@@ -63,9 +63,10 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
 
         try {
             // ========== 步骤3: 检测是否是衣物 ==========
+            // 使用图片URL进行检测（性能优化：避免Base64编码，减少请求体大小）
             // detect 方法返回 boolean，如果不是衣物会抛出 BusinessException（包含详细错误信息）
-            log.info("开始检测图片中是否包含衣物...");
-            boolean isClothing = strategy.detect(file);
+            log.info("开始检测图片中是否包含衣物（使用URL方式）...");
+            boolean isClothing = strategy.detect(originalSysFile.getFileUrl());
             log.info("衣物检测通过: isClothing={}", isClothing);
 
             // ========== 步骤4: 使用原始图片进行AI分析 ==========

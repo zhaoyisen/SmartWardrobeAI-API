@@ -23,14 +23,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DictServiceImpl implements DictService {
 
-    private final SysDictDataService sysDictDataService;
-    private final RedisTemplate<String, Object> redisTemplate;
-    private final ObjectMapper redisObjectMapper;
-
     // Redis缓存Key前缀
     private static final String CACHE_PREFIX = "app:dict:type:";
     // 缓存过期时间：24小时
     private static final long CACHE_TTL_HOURS = 24;
+    private final SysDictDataService sysDictDataService;
+    private final RedisTemplate<String, Object> redisTemplate;
+    private final ObjectMapper redisObjectMapper;
 
     @Override
     public List<Map<String, String>> getDictByType(String dictType) {
@@ -48,8 +47,11 @@ public class DictServiceImpl implements DictService {
                 log.debug("从缓存获取字典数据: {}", dictType);
                 // 使用 ObjectMapper 将 LinkedHashMap 转换为 List<Map<String, String>>
                 List<Map<String, String>> result = redisObjectMapper.convertValue(cached,
-                    new TypeReference<List<Map<String, String>>>() {});
-                return result;
+                        new TypeReference<List<Map<String, String>>>() {
+                        });
+                if (!result.isEmpty()) {
+                    return result;
+                }
             }
         } catch (Exception e) {
             log.warn("从缓存获取字典数据失败: {}, 将查询数据库", dictType, e);
@@ -99,7 +101,8 @@ public class DictServiceImpl implements DictService {
                     log.debug("从缓存获取字典数据: {}", dictType);
                     // 使用 ObjectMapper 将 LinkedHashMap 转换为 List<Map<String, String>>
                     List<Map<String, String>> cachedData = redisObjectMapper.convertValue(cached,
-                        new TypeReference<List<Map<String, String>>>() {});
+                            new TypeReference<List<Map<String, String>>>() {
+                            });
                     result.put(dictType, cachedData);
                 } else {
                     missTypes.add(dictType);

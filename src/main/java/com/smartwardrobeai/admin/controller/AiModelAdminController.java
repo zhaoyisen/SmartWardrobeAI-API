@@ -69,4 +69,11 @@ public class AiModelAdminController {
         sysAiModelService.removeBatchByIds(ids);
         return Result.success(null);
     }
+
+    @PostMapping("/refresh-cache")
+    @Operation(summary = "手动刷新AI模型缓存", description = "清除所有App端AI模型缓存（app:ai-model:*），下次查询时会重新从数据库加载")
+    public Result<Void> refreshCache() {
+        sysAiModelService.refreshCache();
+        return Result.success(null);
+    }
 }

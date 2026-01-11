@@ -18,11 +18,13 @@ import com.smartwardrobeai.utils.QueryGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -30,6 +32,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class SysAIModelServiceImpl extends ServiceImpl<SysAiModelMapper, SysAiModel> implements SysAIModelService {
+
+    private final RedisTemplate<String, Object> redisTemplate;
+
+    // App端AI模型缓存Key前缀
+    private static final String APP_AI_MODEL_CACHE_PREFIX = "app:ai-model:";
 
 
     @Override
@@ -124,5 +131,21 @@ public class SysAIModelServiceImpl extends ServiceImpl<SysAiModelMapper, SysAiMo
         return model;
     }
 
+    @Override
+    public void refreshCache() {
+        try {
+            // 使用通配符获取所有匹配的AI模型缓存key
+            Set<String> keys = redisTemplate.keys(APP_AI_MODEL_CACHE_PREFIX + "*");
+            if (keys != null && !keys.isEmpty()) {
+                redisTemplate.delete(keys);
+                log.info("手动刷新AI模型缓存完成，共清除 {} 个缓存key", keys.size());
+            } else {
+                log.info("手动刷新AI模型缓存完成，未找到需要清除的缓存");
+            }
+        } catch (Exception e) {
+            log.error("手动刷新AI模型缓存失败", e);
+            throw new RuntimeException("刷新AI模型缓存失败: " + e.getMessage(), e);
+        }
+    }
 
 }

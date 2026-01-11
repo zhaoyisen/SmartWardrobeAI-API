@@ -296,7 +296,9 @@ public class SysCategoryStrategyServiceImpl extends ServiceImpl<SysCategoryStrat
         try {
             // 清除所有品类策略缓存
             redisTemplate.delete(CACHE_PREFIX_ALL);
-            log.info("手动刷新品类策略缓存完成");
+            // 同时清除App端品类列表缓存
+            redisTemplate.delete("app:category:list");
+            log.info("手动刷新品类策略缓存完成（包括App端品类列表缓存）");
         } catch (Exception e) {
             log.error("手动刷新缓存失败", e);
             throw new RuntimeException("刷新缓存失败: " + e.getMessage(), e);

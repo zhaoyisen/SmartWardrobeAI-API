@@ -388,5 +388,22 @@ public class SysDictDataServiceImpl extends ServiceImpl<SysDictDataMapper, SysDi
             // 缓存清除失败不影响主流程
         }
     }
+
+    @Override
+    public void refreshCache() {
+        try {
+            // 使用通配符获取所有匹配的字典缓存key
+            Set<String> keys = redisTemplate.keys(APP_DICT_CACHE_PREFIX + "*");
+            if (keys != null && !keys.isEmpty()) {
+                redisTemplate.delete(keys);
+                log.info("手动刷新字典缓存完成，共清除 {} 个缓存key", keys.size());
+            } else {
+                log.info("手动刷新字典缓存完成，未找到需要清除的缓存");
+            }
+        } catch (Exception e) {
+            log.error("手动刷新字典缓存失败", e);
+            throw new RuntimeException("刷新字典缓存失败: " + e.getMessage(), e);
+        }
+    }
 }
 

@@ -44,4 +44,10 @@ public interface SysAIModelService extends IService<SysAiModel> {
      * @return 模型实体
      */
     SysAiModel getModelDetail(String modelKey);
+
+    /**
+     * 手动刷新AI模型缓存
+     * 清除所有App端AI模型缓存（app:ai-model:*），下次查询时会重新从数据库加载
+     */
+    void refreshCache();
 }

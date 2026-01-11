@@ -28,6 +28,19 @@ public interface AiAnalysisStrategy {
     boolean detect(MultipartFile file);
 
     /**
+     * 检测图片中是否包含衣物（使用图片URL）
+     * <p>
+     * 性能优化版本：使用图片URL替代Base64编码，减少请求体大小和编码开销。
+     * 适用于图片已上传到云存储的场景。
+     * </p>
+     *
+     * @param imageUrl 图片的完整访问URL（必须是可公开访问的HTTP/HTTPS URL）
+     * @return true 如果图片中包含衣物，false 如果未包含（但通常会抛出异常）
+     * @throws com.smartwardrobeai.common.BusinessException 如果检测到非衣物图片，会抛出异常并包含原因信息
+     */
+    boolean detect(String imageUrl);
+
+    /**
      * 去除图片背景，提取衣物主体
      *
      * @param file 前端上传的图片文件

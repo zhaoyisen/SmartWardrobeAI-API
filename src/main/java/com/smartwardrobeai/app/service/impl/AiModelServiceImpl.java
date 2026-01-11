@@ -49,7 +49,9 @@ public class AiModelServiceImpl implements AiModelService {
                 // 使用 ObjectMapper 将 LinkedHashMap 转换为 List<AiModelVO>
                 List<AiModelVO> result = redisObjectMapper.convertValue(cached, 
                     new TypeReference<List<AiModelVO>>() {});
-                return result;
+                if (result != null && result.size() > 0) {
+                    return result;
+                }
             }
         } catch (Exception e) {
             log.warn("从缓存获取AI模型列表失败，将查询数据库", e);

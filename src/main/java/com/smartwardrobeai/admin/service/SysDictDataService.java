@@ -70,5 +70,11 @@ public interface SysDictDataService extends IService<SysDictData> {
      * @param response HTTP响应
      */
     void downloadTemplate(HttpServletResponse response);
+
+    /**
+     * 手动刷新字典缓存
+     * 清除所有App端字典缓存（app:dict:type:*），下次查询时会重新从数据库加载
+     */
+    void refreshCache();
 }
 

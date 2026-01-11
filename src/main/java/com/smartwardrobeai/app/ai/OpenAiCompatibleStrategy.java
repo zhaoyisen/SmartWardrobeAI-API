@@ -5,6 +5,7 @@ import com.alibaba.fastjson2.JSONObject;
 import com.smartwardrobeai.admin.model.entity.SysCategoryStrategy;
 import com.smartwardrobeai.admin.service.SysCategoryStrategyService;
 import com.smartwardrobeai.app.model.vo.ClothingAnalysisVO;
+import com.smartwardrobeai.app.service.DictService;
 import com.smartwardrobeai.common.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
@@ -35,15 +36,17 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
     private final AiModelConfig config;
     private final RestTemplate restTemplate;
     private final SysCategoryStrategyService categoryStrategyService;
+    private final DictService dictService;
 
     /**
      * 构造函数 (由工厂调用)
      * 在这里接收配置，并"记住"它
      */
-    public OpenAiCompatibleStrategy(AiModelConfig config, RestTemplate restTemplate, SysCategoryStrategyService categoryStrategyService) {
+    public OpenAiCompatibleStrategy(AiModelConfig config, RestTemplate restTemplate, SysCategoryStrategyService categoryStrategyService, DictService dictService) {
         this.config = config;
         this.restTemplate = restTemplate;
         this.categoryStrategyService = categoryStrategyService;
+        this.dictService = dictService;
     }
 
     @Override
@@ -87,6 +90,49 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
             throw e;
         } catch (Exception e) {
             log.error("AI 衣物检测失败: Model={}, Error={}", config.getModelName(), e.getMessage(), e);
+            throw new RuntimeException("AI 衣物检测失败: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public boolean detect(String imageUrl) {
+        try {
+            log.info("使用图片URL进行检测: {}", imageUrl);
+
+            // 1. 构造检测请求 Body（直接使用URL，无需Base64编码）
+            Map<String, Object> requestBody = buildDetectionRequestBody(imageUrl);
+
+            // 2. 发起请求并解析结果
+            String rawResponse = callAiApi(requestBody);
+            JSONObject detectResult = parseResponse(rawResponse);
+
+            // 3. 解析检测结果
+            Boolean isClothing = detectResult.getBoolean("isClothing");
+            Double confidence = detectResult.getDouble("confidence");
+            String reason = detectResult.getString("reason");
+
+            log.info("AI 衣物检测结果: isClothing={}, confidence={}, reason={}", isClothing, confidence, reason);
+
+            // 4. 如果不是衣物，抛出业务异常
+            if (!Boolean.TRUE.equals(isClothing)) {
+                String errorMessage = "请上传衣物图片";
+                if (reason != null && !reason.trim().isEmpty()) {
+                    errorMessage += "：" + reason;
+                }
+                if (confidence != null) {
+                    errorMessage += String.format(" (置信度: %.2f)", confidence);
+                }
+                throw new BusinessException(errorMessage);
+            }
+
+            // 5. 检测通过，返回 true
+            return true;
+
+        } catch (BusinessException e) {
+            // 业务异常直接抛出
+            throw e;
+        } catch (Exception e) {
+            log.error("AI 衣物检测失败: Model={}, URL={}, Error={}", config.getModelName(), imageUrl, e.getMessage(), e);
             throw new RuntimeException("AI 衣物检测失败: " + e.getMessage(), e);
         }
     }
@@ -179,23 +225,43 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
 
     /**
      * 构造检测请求体
+     * <p>
+     * 支持两种格式：
+     * 1. Base64 Data URI: "data:image/jpeg;base64,..."（原有方式）
+     * 2. 普通 HTTP/HTTPS URL: "http://example.com/image.jpg"（优化方式）
+     * </p>
+     *
+     * @param imageUrlOrBase64 图片URL或Base64 Data URI
      */
-    private Map<String, Object> buildDetectionRequestBody(String base64Url) {
+    private Map<String, Object> buildDetectionRequestBody(String imageUrlOrBase64) {
         List<Map<String, Object>> contentList = new ArrayList<>();
 
         // --- 图片 ---
+        // OpenAI 兼容协议支持直接使用 HTTP/HTTPS URL，也支持 Base64 Data URI
         Map<String, Object> imgMap = new HashMap<>();
-        imgMap.put("url", base64Url);
+        imgMap.put("url", imageUrlOrBase64);
         contentList.add(Map.of("type", "image_url", "image_url", imgMap));
 
         // --- 检测 Prompt ---
         String prompt = """
-                你是一个图像识别专家。请判断图片中是否包含衣物（服装）。
+                你是一个图像识别专家。请严格验证图片是否符合试穿图生成的要求。
+                
+                验证标准（必须全部满足，否则返回 isClothing=false）：
+                1. 图片中必须只包含一件衣物（不允许多件衣物）
+                2. 不允许有其他物品、人物或复杂背景
+                3. 图片应该是纯衣物展示，适合用于后续的试穿图生成
+                
+                如果不符合要求，请在 reason 字段中详细说明原因，例如：
+                - "图片中包含多件衣物"
+                - "图片中包含人物或其他物品"
+                - "背景过于复杂，不适合试穿图生成"
+                - "图片中未检测到衣物"
+                
                 严格返回以下 JSON 格式，不要 Markdown：
                 {
                     "isClothing": true/false,
                     "confidence": 0.0-1.0,
-                    "reason": "简要说明原因"
+                    "reason": "详细说明验证结果和原因"
                 }
                 """;
         contentList.add(Map.of("type", "text", "text", prompt));
@@ -525,19 +591,24 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
         // --- Prompt ---
         // 从数据库动态获取品类列表
         String categoryList = getCategoryListForPrompt();
+        // 从字典获取选项列表
+        String colorOptions = getDictOptionsForPrompt("clothing_color", "主色调英文");
+        String seasonOptions = getDictOptionsForPrompt("clothing_season", "适用季节英文");
+        String fitTypeOptions = getDictOptionsForPrompt("clothing_fit_type", "Regular/Loose/Slim/Oversize");
+        String viewTypeOptions = getDictOptionsForPrompt("clothing_view_type", "Flat/Model/Hanger");
+        
         String prompt = String.format("""
                 你是一个时尚专家。请分析图中的衣物。
                 严格返回以下 JSON 格式，不要 Markdown：
                 {
                     "category": "请从列表选择: %s",
-                    "color": "主色调英文",
-                    "season": "适用季节英文",
-                    "fitType": "Regular/Loose/Slim/Oversize",
-                    "viewType": "Flat/Model/Hanger"
+                    "color": "请从列表选择: %s",
+                    "season": "请从列表选择: %s",
+                    "fitType": "请从列表选择: %s",
+                    "viewType": "请从列表选择: %s"
                 }
-                """, categoryList);
+                """, categoryList, colorOptions, seasonOptions, fitTypeOptions, viewTypeOptions);
         contentList.add(Map.of("type", "text", "text", prompt));
-        // TODO season fitType viewType换成字典
 
 
         // --- Message ---
@@ -619,6 +690,42 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
             log.error("获取品类列表失败，使用默认列表", e);
             // 降级处理：返回硬编码的默认列表
             return "T-shirt, Shirt, Hoodie, Sweater, Jacket, Coat, Jeans, Pants, Shorts, Skirt, Dress, Sneakers, Boots, Hat, Bag";
+        }
+    }
+
+    /**
+     * 从字典获取选项列表，用于构建 AI Prompt
+     * 优先使用 promptText（如果存在且不为空），否则使用 value
+     *
+     * @param dictType 字典类型编码（如：clothing_color）
+     * @param defaultValue 降级处理时的默认值
+     * @return 选项列表，用逗号分隔（如 "red, blue, green"）
+     */
+    private String getDictOptionsForPrompt(String dictType, String defaultValue) {
+        try {
+            List<Map<String, String>> dictList = dictService.getDictByType(dictType);
+            if (dictList == null || dictList.isEmpty()) {
+                log.warn("字典类型 [{}] 数据为空，使用默认值: {}", dictType, defaultValue);
+                return defaultValue;
+            }
+
+            return dictList.stream()
+                    .map(item -> {
+                        // 优先使用 promptText，如果为空则使用 value
+                        String promptText = item.get("promptText");
+                        String value = item.get("value");
+                        if (promptText != null && !promptText.trim().isEmpty()) {
+                            // promptText 可能包含多个值（用逗号分隔），只取第一个
+                            String[] parts = promptText.split(",");
+                            return parts[0].trim();
+                        }
+                        return value != null ? value : "";
+                    })
+                    .filter(s -> !s.isEmpty())
+                    .collect(Collectors.joining(", "));
+        } catch (Exception e) {
+            log.error("获取字典类型 [{}] 数据失败，使用默认值: {}", dictType, defaultValue, e);
+            return defaultValue;
         }
     }
 }
