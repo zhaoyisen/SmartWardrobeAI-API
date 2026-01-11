@@ -72,8 +72,8 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
             // ========== 步骤4: 使用原始图片进行AI分析 ==========
             // analyze 方法内部会处理品类匹配和VO组装，直接返回完整的 ClothingAnalysisVO
             log.info("开始执行AI分析...");
-            ClothingAnalysisVO result = strategy.analyze(file, originalSysFile.getId(), originalSysFile.getFileUrl());
-            
+            ClothingAnalysisVO result = strategy.analyze(originalSysFile.getId(), originalSysFile.getFileUrl());
+
             log.info("AI分析完成: category={}, color={}", result.category(), result.color());
             return result;
 

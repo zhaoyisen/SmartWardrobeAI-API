@@ -51,10 +51,9 @@ public interface AiAnalysisStrategy {
     /**
      * 执行图片分析并返回完整结果
      *
-     * @param file     前端上传的图片文件
      * @param imageId  原始图片的ID（用于组装返回结果）
      * @param imageUrl 原始图片的URL（用于组装返回结果）
      * @return 完整的 AI 分析结果 VO，包含所有识别出的属性信息
      */
-    ClothingAnalysisVO analyze(MultipartFile file, Long imageId, String imageUrl);
+    ClothingAnalysisVO analyze( Long imageId, String imageUrl);
 }

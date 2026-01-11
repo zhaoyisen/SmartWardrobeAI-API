@@ -159,15 +159,29 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
         }
     }
 
+    /**
+     * 执行图片分析并返回完整结果
+     * <p>
+     * 性能优化：直接使用图片URL（imageUrl参数），无需从MultipartFile转换为Base64，
+     * 减少内存占用和编码开销，与 detect(String imageUrl) 方法保持一致。
+     * </p>
+     *
+     * @param imageId  原始图片的ID（用于组装返回结果）
+     * @param imageUrl 原始图片的URL（必须是可公开访问的HTTP/HTTPS URL，用于AI分析）
+     * @return 完整的 AI 分析结果 VO，包含所有识别出的属性信息
+     */
     @Override
-    public ClothingAnalysisVO analyze(MultipartFile file, Long imageId, String imageUrl) {
+    public ClothingAnalysisVO analyze(Long imageId, String imageUrl) {
         try {
-            // 1. 图片转 Base64 (Data URI Scheme)
-            String base64Content = Base64.getEncoder().encodeToString(file.getBytes());
-            String finalBase64Url = "data:" + file.getContentType() + ";base64," + base64Content;
+            // 1. 参数校验：确保 imageUrl 不为空
+            if (imageUrl == null || imageUrl.trim().isEmpty()) {
+                throw new IllegalArgumentException("imageUrl 参数不能为空");
+            }
 
-            // 2. 构造请求 Body (直接使用 this.config)
-            Map<String, Object> requestBody = buildRequestBody(finalBase64Url);
+            log.info("使用图片URL进行AI分析: {}", imageUrl);
+
+            // 2. 构造请求 Body（直接使用 imageUrl，无需Base64编码）
+            Map<String, Object> requestBody = buildRequestBody(imageUrl);
 
             // 3. 发起请求并解析结果
             String rawResponse = callAiApi(requestBody);
@@ -578,14 +592,22 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
 
 
     /**
-     * 构造请求体 (私有辅助方法)
+     * 构造分析请求体 (私有辅助方法)
+     * <p>
+     * 支持两种格式：
+     * 1. Base64 Data URI: "data:image/jpeg;base64,..."（原有方式）
+     * 2. 普通 HTTP/HTTPS URL: "http://example.com/image.jpg"（优化方式，推荐）
+     * </p>
+     *
+     * @param imageUrlOrBase64 图片URL或Base64 Data URI
      */
-    private Map<String, Object> buildRequestBody(String base64Url) {
+    private Map<String, Object> buildRequestBody(String imageUrlOrBase64) {
         List<Map<String, Object>> contentList = new ArrayList<>();
 
         // --- 图片 ---
+        // OpenAI 兼容协议支持直接使用 HTTP/HTTPS URL，也支持 Base64 Data URI
         Map<String, Object> imgMap = new HashMap<>();
-        imgMap.put("url", base64Url);
+        imgMap.put("url", imageUrlOrBase64);
         contentList.add(Map.of("type", "image_url", "image_url", imgMap));
 
         // --- Prompt ---
