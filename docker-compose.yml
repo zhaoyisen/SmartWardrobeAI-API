@@ -28,3 +28,12 @@ services:
     # 挂载日志 (如果你要在服务器上直接看 logs 文件夹)
     volumes:
       - ./logs:/app/logs
+
+    networks:
+      - default         # 保留原来的网络
+      - my_global_net   # 加入新定义的网络
+
+networks:
+  my_global_net:
+    external: true
+    name: sw_shared_network
