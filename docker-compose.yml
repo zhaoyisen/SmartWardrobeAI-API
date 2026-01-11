@@ -16,6 +16,13 @@ services:
       - TZ=Asia/Shanghai
       - ALIBABA_ACCESS_KEY_ID=${ALIBABA_ACCESS_KEY_ID}
       - ALIBABA_ACCESS_KEY_SECRET=${ALIBABA_ACCESS_KEY_SECRET}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
       # 如果你想在不改代码的情况下临时换数据库密码，可以在这里解开注释写：
       # - SPRING_DATASOURCE_PASSWORD=新密码
     # 挂载日志 (如果你要在服务器上直接看 logs 文件夹)

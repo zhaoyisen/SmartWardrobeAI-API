@@ -1,6 +1,5 @@
 package com.smartwardrobeai.app.service.impl;
 
-import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.smartwardrobeai.admin.model.entity.SysCategoryStrategy;
 import com.smartwardrobeai.admin.service.SysCategoryStrategyService;
@@ -14,6 +13,7 @@ import com.smartwardrobeai.app.model.entity.SysFile;
 import com.smartwardrobeai.app.model.vo.ClothingAnalysisVO;
 import com.smartwardrobeai.app.service.ClothingService;
 import com.smartwardrobeai.app.service.FileStorageService;
+import com.smartwardrobeai.common.BusinessException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,6 +33,18 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
 
     /**
      * Step 1: 上传图片并进行智能分析
+     * <p>
+     * 完整流程：
+     * 1. 保存原始图片到MinIO
+     * 2. 检测是否是衣物（如果不是，strategy 会抛出 BusinessException）
+     * 3. 使用原始图片进行AI分析，strategy 内部会组装完整的 ClothingAnalysisVO
+     * 4. 返回完整结果
+     * </p>
+     * <p>
+     * 注意：
+     * - 已暂时取消去除背景步骤，可能需要更换专门的模型来处理背景去除
+     * - 业务逻辑（品类匹配、VO组装）已移到 strategy 层，service 层只负责流程编排
+     * </p>
      *
      * @param file   前端上传的文件
      * @param config 前端选择的模型配置 (包含 modelKey, 思考模式开关等)
@@ -41,40 +53,41 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
     @Override
     public ClothingAnalysisVO uploadAndAnalyze(MultipartFile file, AiExecutionDTO config) {
         log.info("收到图片分析请求: {}", file.getOriginalFilename());
-        log.info("tt");
-        // 1. MinIO 存底 (图片必须先存下来)
-        SysFile sysFile = fileStorageService.upload(file);
+
+        // ========== 步骤1: 保存原始图片到MinIO ==========
+        SysFile originalSysFile = fileStorageService.upload(file);
+        log.info("原始图片已保存: ID={}, URL={}", originalSysFile.getId(), originalSysFile.getFileUrl());
+
+        // ========== 步骤2: 创建AI策略 ==========
+        AiAnalysisStrategy strategy = aiModelManager.createStrategy(config);
+
         try {
-            // 2. 向工厂申请一个策略 (传入前端参数)
-            // 工厂会自动查库、合并参数、处理 API Key，我们不用管
-            AiAnalysisStrategy strategy = aiModelManager.createStrategy(config);
-            // 3. 执行分析 (直接传入文件)
-            // 策略内部会自动处理 Base64、HTTP 请求、JSON 解析
-            JSONObject aiData = strategy.analyze(file);
+            // ========== 步骤3: 检测是否是衣物 ==========
+            // detect 方法返回 boolean，如果不是衣物会抛出 BusinessException（包含详细错误信息）
+            log.info("开始检测图片中是否包含衣物...");
+            boolean isClothing = strategy.detect(file);
+            log.info("衣物检测通过: isClothing={}", isClothing);
 
-            // 4. 匹配本地分类策略（从数据库查询，带缓存）
-            SysCategoryStrategy catStrategy = categoryStrategyService.match(aiData.getString("category"));
+            // ========== 步骤4: 使用原始图片进行AI分析 ==========
+            // analyze 方法内部会处理品类匹配和VO组装，直接返回完整的 ClothingAnalysisVO
+            log.info("开始执行AI分析...");
+            ClothingAnalysisVO result = strategy.analyze(file, originalSysFile.getId(), originalSysFile.getFileUrl());
+            
+            log.info("AI分析完成: category={}, color={}", result.category(), result.color());
+            return result;
 
-
-            //返回vo
-            return new ClothingAnalysisVO(
-                    sysFile.getId(),
-                    sysFile.getFileUrl(),
-                    null, null,
-                    catStrategy.getCategoryCode(),
-                    catStrategy.getRegion(),
-                    Integer.valueOf(catStrategy.getLayer()),
-                    aiData.getString("color"),
-                    aiData.getString("season"),
-                    aiData.getString("fitType"),
-                    aiData.getString("viewType")
-            );
+        } catch (BusinessException e) {
+            // 业务异常直接抛出（如检测到非衣物，detect 方法已包含详细错误信息）
+            throw e;
         } catch (Exception e) {
             log.error("AI 分析流程失败", e);
             // 🛡️ 降级处理：依然返回上传成功的图片，但分类信息留空，让用户手动填
             SysCategoryStrategy unknownStrategy = categoryStrategyService.match("Unknown");
             return new ClothingAnalysisVO(
-                    sysFile.getId(), sysFile.getFileUrl(), null, null,
+                    originalSysFile.getId(),
+                    originalSysFile.getFileUrl(),
+                    null,
+                    null,
                     unknownStrategy.getCategoryCode(),
                     unknownStrategy.getRegion(),
                     Integer.valueOf(unknownStrategy.getLayer()),

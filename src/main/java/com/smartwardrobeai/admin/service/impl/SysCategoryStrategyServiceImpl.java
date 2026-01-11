@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartwardrobeai.admin.mapper.SysCategoryStrategyMapper;
 import com.smartwardrobeai.admin.model.dto.CategoryStrategyQueryDTO;
 import com.smartwardrobeai.admin.model.dto.CategoryStrategySaveDTO;
@@ -35,6 +37,7 @@ public class SysCategoryStrategyServiceImpl extends ServiceImpl<SysCategoryStrat
 
     private final RedisTemplate<String, Object> redisTemplate;
     private final SysDictDataService dictDataService;
+    private final ObjectMapper redisObjectMapper;
 
     // Redis Key 前缀
     private static final String CACHE_PREFIX_CODE = "category_strategy:code:";
@@ -58,7 +61,8 @@ public class SysCategoryStrategyServiceImpl extends ServiceImpl<SysCategoryStrat
         Object cached = redisTemplate.opsForValue().get(cacheKey);
         if (cached != null) {
             log.debug("从缓存获取品类策略: {}", code);
-            return (SysCategoryStrategy) cached;
+            // 使用 ObjectMapper 将 LinkedHashMap 转换为 SysCategoryStrategy
+            return redisObjectMapper.convertValue(cached, SysCategoryStrategy.class);
         }
 
         // 2. 缓存未命中，查数据库
@@ -86,7 +90,9 @@ public class SysCategoryStrategyServiceImpl extends ServiceImpl<SysCategoryStrat
         Object cached = redisTemplate.opsForValue().get(CACHE_PREFIX_ALL);
         if (cached != null) {
             log.debug("从缓存获取所有启用的品类策略");
-            return (List<SysCategoryStrategy>) cached;
+            // 使用 ObjectMapper 将 LinkedHashMap 转换为 List<SysCategoryStrategy>
+            return redisObjectMapper.convertValue(cached,
+                new TypeReference<List<SysCategoryStrategy>>() {});
         }
 
         // 2. 缓存未命中，查数据库

@@ -1,5 +1,7 @@
 package com.smartwardrobeai.app.service.impl;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartwardrobeai.admin.service.SysDictDataService;
 import com.smartwardrobeai.app.service.DictService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class DictServiceImpl implements DictService {
 
     private final SysDictDataService sysDictDataService;
     private final RedisTemplate<String, Object> redisTemplate;
+    private final ObjectMapper redisObjectMapper;
 
     // Redis缓存Key前缀
     private static final String CACHE_PREFIX = "app:dict:type:";
@@ -43,8 +46,9 @@ public class DictServiceImpl implements DictService {
             Object cached = redisTemplate.opsForValue().get(cacheKey);
             if (cached != null) {
                 log.debug("从缓存获取字典数据: {}", dictType);
-                @SuppressWarnings("unchecked")
-                List<Map<String, String>> result = (List<Map<String, String>>) cached;
+                // 使用 ObjectMapper 将 LinkedHashMap 转换为 List<Map<String, String>>
+                List<Map<String, String>> result = redisObjectMapper.convertValue(cached,
+                    new TypeReference<List<Map<String, String>>>() {});
                 return result;
             }
         } catch (Exception e) {
@@ -93,8 +97,9 @@ public class DictServiceImpl implements DictService {
                 Object cached = redisTemplate.opsForValue().get(cacheKey);
                 if (cached != null) {
                     log.debug("从缓存获取字典数据: {}", dictType);
-                    @SuppressWarnings("unchecked")
-                    List<Map<String, String>> cachedData = (List<Map<String, String>>) cached;
+                    // 使用 ObjectMapper 将 LinkedHashMap 转换为 List<Map<String, String>>
+                    List<Map<String, String>> cachedData = redisObjectMapper.convertValue(cached,
+                        new TypeReference<List<Map<String, String>>>() {});
                     result.put(dictType, cachedData);
                 } else {
                     missTypes.add(dictType);

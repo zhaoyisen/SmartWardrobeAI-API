@@ -20,9 +20,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # 注意: 生产环境建议使用环境变量引用，如 ${DB_HOST:localhost}
-    url: jdbc:mysql://139.155.173.161:3306/smart_wardrobe?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: 123456
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/smart_wardrobe?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     hikari:
       minimum-idle: 5
       maximum-pool-size: 20
@@ -33,10 +33,10 @@ spring:
 
   data:
     redis:
-      host: 139.155.173.161
-      port: 6379
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
       timeout: 5000
-      password: 123456
+      password: ${REDIS_PASSWORD}
 
   # ----------------------------------------
   # 文件上传限制
