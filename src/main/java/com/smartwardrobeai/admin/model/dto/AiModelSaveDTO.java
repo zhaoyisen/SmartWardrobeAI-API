@@ -50,4 +50,7 @@ public class AiModelSaveDTO {
 
     @Schema(description = "状态 (1启用 0禁用)")
     private Integer status;
+
+    @Schema(description = "备注")
+    private String remark;
 }

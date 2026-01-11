@@ -89,6 +89,8 @@ CREATE TABLE `sys_ai_model`
     PRIMARY KEY (`id`),
     UNIQUE KEY `uk_model_key` (`model_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='AI模型配置表';
+ALTER TABLE sys_ai_model ADD COLUMN remark varchar(255)  COMMENT '备注';
+
 
 
 -- #衣物表
