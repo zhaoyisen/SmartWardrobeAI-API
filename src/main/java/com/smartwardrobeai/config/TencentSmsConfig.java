@@ -23,8 +23,8 @@ public class TencentSmsConfig {
     /**
      * 初始化腾讯云 SMS 客户端
      */
-    @Bean(name = "smsClient")
-    public SmsClient smsClient() {
+    @Bean(name = "tencentSmsClient")
+    public SmsClient tencentSmsClient() {
         // 实例化一个认证对象，入参需要传入腾讯云账户 SecretId 和 SecretKey
         Credential cred = new Credential(secretId, secretKey);
 

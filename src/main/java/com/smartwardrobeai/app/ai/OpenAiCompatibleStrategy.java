@@ -175,7 +175,7 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
         try {
             // 1. 参数校验：确保 imageUrl 不为空
             if (imageUrl == null || imageUrl.trim().isEmpty()) {
-                throw new IllegalArgumentException("imageUrl 参数不能为空");
+                throw new BusinessException("imageUrl 参数不能为空");
             }
 
             log.info("使用图片URL进行AI分析: {}", imageUrl);
@@ -262,7 +262,7 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
                 
                 验证标准（必须全部满足，否则返回 isClothing=false）：
                 1. 图片中必须只包含一件衣物（不允许多件衣物）
-                2. 不允许有其他物品、人物或复杂背景
+                2. 不允许有物品、人物或复杂背景,如果有其余因素存在则判断是否方便将衣物单独扣取出来
                 3. 图片应该是纯衣物展示，适合用于后续的试穿图生成
                 
                 如果不符合要求，请在 reason 字段中详细说明原因，例如：

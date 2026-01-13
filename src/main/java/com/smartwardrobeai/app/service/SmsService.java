@@ -37,10 +37,10 @@ public class SmsService {
     private String tencentTemplateId;
 
     // 阿里云号码认证服务配置
-    @Value("${aliyun.sms.access-key-id:}")
+    @Value("${aliyun.access-key-id:}")
     private String aliyunAccessKeyId;
 
-    @Value("${aliyun.sms.access-key-secret:}")
+    @Value("${aliyun.access-key-secret:}")
     private String aliyunAccessKeySecret;
 
     @Value("${aliyun.sms.sign-name:}")

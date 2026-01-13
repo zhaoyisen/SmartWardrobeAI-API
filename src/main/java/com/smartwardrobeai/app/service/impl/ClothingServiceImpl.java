@@ -14,6 +14,7 @@ import com.smartwardrobeai.app.model.vo.ClothingAnalysisVO;
 import com.smartwardrobeai.app.service.ClothingService;
 import com.smartwardrobeai.app.service.FileStorageService;
 import com.smartwardrobeai.common.BusinessException;
+import com.smartwardrobeai.utils.TechnicalIndicatorValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
     private final AiModelManager aiModelManager;
     // 品类策略服务
     private final SysCategoryStrategyService categoryStrategyService;
+    private final TechnicalIndicatorValidator technicalIndicatorValidator;
 
     /**
      * Step 1: 上传图片并进行智能分析
@@ -53,7 +55,8 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
     @Override
     public ClothingAnalysisVO uploadAndAnalyze(MultipartFile file, AiExecutionDTO config) {
         log.info("收到图片分析请求: {}", file.getOriginalFilename());
-
+        //对图片进行基础校验
+        technicalIndicatorValidator.validate(file);
         // ========== 步骤1: 保存原始图片到MinIO ==========
         SysFile originalSysFile = fileStorageService.upload(file);
         log.info("原始图片已保存: ID={}, URL={}", originalSysFile.getId(), originalSysFile.getFileUrl());

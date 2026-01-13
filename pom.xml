@@ -137,6 +137,22 @@
             <artifactId>dypnsapi20170525</artifactId>
             <version>2.0.0</version>
         </dependency>
+        <!--阿里云AI抠图-->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>imageseg20191230</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>tea-openapi</artifactId>
+            <version>0.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>tea-util</artifactId>
+            <version>0.2.21</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>com.aliyun</groupId>-->
 <!--            <artifactId>aliyun-java-sdk-credentials</artifactId>-->
