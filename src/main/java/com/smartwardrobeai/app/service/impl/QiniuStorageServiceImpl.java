@@ -87,4 +87,9 @@ public class QiniuStorageServiceImpl implements FileStorageService {
             throw new BusinessException("文件上传失败");
         }
     }
+
+    @Override
+    public SysFile uploadFromUrl(String url, String originalFileName) {
+        return null;
+    }
 }

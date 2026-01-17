@@ -8,17 +8,22 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
- * 新增衣物提交参数 DTO (全字段版)
+ * 保存衣物提交参数 DTO (全字段版)
+ * 当 id 为 null 时表示新增，不为 null 时表示编辑
  */
-@Schema(description = "新增衣物请求参数")
+@Schema(description = "保存衣物请求参数（新增或编辑）")
 public record ClothingCreateDTO(
+
+        // ================= 0. 标识字段 =================
+        @Schema(description = "衣物ID (编辑时必填，新增时为空)", example = "1")
+        Long id,
 
         // ================= 1. 核心关联 =================
         @Schema(description = "原始图片ID (必填)", requiredMode = Schema.RequiredMode.REQUIRED, example = "1001")
         @NotNull(message = "必须包含图片ID")
         Long imageId,
 
-        @Schema(description = "AI生成的抠图ID (可选)", example = "1002")
+        @Schema(description = "分割后图片ID", example = "1002")
         Long maskImageId,
 
         // ================= 2. 核心分类 (可覆盖系统默认值) =================

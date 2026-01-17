@@ -216,6 +216,84 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
     }
 
     /**
+     * 执行图片校验和分析（合并版本，一次调用完成）
+     * <p>
+     * 性能优化版本：合并校验和分析为一次AI调用，降低成本。
+     * 使用分割后的图片进行校验和分析，同时完成：
+     * 1. 校验：是否适合试穿、是否包含一件服装等
+     * 2. 分析：提取 category, color, season, fitType, viewType 等信息
+     * </p>
+     *
+     * @param imageId 原始图片的ID（用于组装返回结果）
+     * @param originalImageUrl 原始图片的URL（用于组装返回结果）
+     * @param segmentedImageUrl 分割后的图片URL（用于AI分析）
+     * @return 完整的 AI 分析结果 VO，包含所有识别出的属性信息
+     * @throws BusinessException 如果校验失败（不适合试穿、包含多件服装等）
+     */
+    @Override
+    public ClothingAnalysisVO analyzeWithValidation(Long imageId, String originalImageUrl, String segmentedImageUrl) {
+        try {
+            // 1. 参数校验：确保 segmentedImageUrl 不为空
+            if (segmentedImageUrl == null || segmentedImageUrl.trim().isEmpty()) {
+                throw new BusinessException("分割后的图片URL不能为空");
+            }
+
+            log.info("使用分割后的图片URL进行校验和分析: {}", segmentedImageUrl);
+
+            // 2. 构造合并的请求 Body（包含校验和分析）
+            Map<String, Object> requestBody = buildValidationAndAnalysisRequestBody(segmentedImageUrl);
+
+            // 3. 发起请求并解析结果
+            String rawResponse = callAiApi(requestBody);
+            JSONObject aiData = parseResponse(rawResponse);
+
+            // 4. 先进行校验检查
+            Boolean isValid = aiData.getBoolean("isValid");
+            String validationReason = aiData.getString("validationReason");
+
+            log.info("AI 校验结果: isValid={}, validationReason={}", isValid, validationReason);
+
+            // 5. 如果校验失败，抛出业务异常
+            if (!Boolean.TRUE.equals(isValid)) {
+                String errorMessage = "图片不符合试穿图生成要求";
+                if (validationReason != null && !validationReason.trim().isEmpty()) {
+                    errorMessage += "：" + validationReason;
+                }
+                throw new BusinessException(errorMessage);
+            }
+
+            // 6. 校验通过，提取分析结果
+            String category = aiData.getString("category");
+            SysCategoryStrategy catStrategy = categoryStrategyService.match(category);
+
+            log.info("AI校验和分析完成: category={}, color={}, region={}", 
+                    category, aiData.getString("color"), catStrategy.getRegion());
+
+            // 7. 组装并返回完整的 ClothingAnalysisVO
+            return new ClothingAnalysisVO(
+                    imageId,
+                    originalImageUrl, // 使用原始图片URL
+                    null, // maskImageId - 分割图片ID由调用方处理
+                    null, // maskImageUrl - 分割图片URL由调用方处理
+                    catStrategy.getCategoryCode(),
+                    catStrategy.getRegion(),
+                    Integer.valueOf(catStrategy.getLayer()),
+                    aiData.getString("color"),
+                    aiData.getString("season"),
+                    aiData.getString("fitType"),
+                    aiData.getString("viewType")
+            );
+
+        } catch (BusinessException e) {
+            // 业务异常直接抛出
+            throw e;
+        } catch (Exception e) {
+            log.error("AI 校验和分析失败: Model={}, Error={}", config.getModelName(), e.getMessage(), e);
+            throw new RuntimeException("AI 服务调用失败: " + e.getMessage(), e);
+        }
+    }
+
+    /**
      * 统一的AI API调用方法
      */
     private String callAiApi(Map<String, Object> requestBody) {
@@ -650,6 +728,87 @@ public class OpenAiCompatibleStrategy implements AiAnalysisStrategy {
         if (config.isFinalThinkingEnabled()) {
             body.put("enable_thinking", true);
             // ✅ 使用配置中的 Token 预算 (Long)
+            body.put("thinking_budget", config.getFinalThinkingBudget());
+        }
+
+        return body;
+    }
+
+    /**
+     * 构造校验和分析合并请求体 (私有辅助方法)
+     * <p>
+     * 合并校验和分析为一次AI调用，降低成本。
+     * 使用分割后的图片URL进行校验和分析。
+     * </p>
+     *
+     * @param segmentedImageUrl 分割后的图片URL（必须是可公开访问的HTTP/HTTPS URL）
+     */
+    private Map<String, Object> buildValidationAndAnalysisRequestBody(String segmentedImageUrl) {
+        List<Map<String, Object>> contentList = new ArrayList<>();
+
+        // --- 图片 ---
+        Map<String, Object> imgMap = new HashMap<>();
+        imgMap.put("url", segmentedImageUrl);
+        contentList.add(Map.of("type", "image_url", "image_url", imgMap));
+
+        // --- Prompt ---
+        // 从数据库动态获取品类列表
+        String categoryList = getCategoryListForPrompt();
+        // 从字典获取选项列表
+        String colorOptions = getDictOptionsForPrompt("clothing_color", "主色调英文");
+        String seasonOptions = getDictOptionsForPrompt("clothing_season", "适用季节英文");
+        String fitTypeOptions = getDictOptionsForPrompt("clothing_fit_type", "Regular/Loose/Slim/Oversize");
+        String viewTypeOptions = getDictOptionsForPrompt("clothing_view_type", "Flat/Model/Hanger");
+        
+        String prompt = String.format("""
+                你是一个图像识别专家。请对分割后的衣物图片进行校验和分析。
+                
+                第一步：校验（必须全部满足，否则返回 isValid=false）
+                1. 图片中必须只包含一件衣物（不允许多件衣物）
+                2. 衣物主体清晰完整，适合用于试穿图生成
+                3. 背景干净或已去除，衣物可以单独提取
+                4. 衣物没有严重遮挡或损坏
+                
+                如果不符合要求，请在 validationReason 字段中详细说明原因，例如：
+                - "图片中包含多件衣物"
+                - "衣物主体不清晰或损坏"
+                - "背景过于复杂，不适合试穿图生成"
+                - "图片中未检测到完整的衣物"
+                
+                第二步：分析（仅在校验通过时执行，isValid=true）
+                提取衣物的各项属性信息。
+                
+                严格返回以下 JSON 格式，不要 Markdown：
+                {
+                    "isValid": true/false,
+                    "validationReason": "校验失败原因（如果失败，否则为空字符串）",
+                    "category": "请从列表选择: %s",
+                    "color": "请从列表选择: %s",
+                    "season": "请从列表选择: %s",
+                    "fitType": "请从列表选择: %s",
+                    "viewType": "请从列表选择: %s"
+                }
+                
+                注意：
+                - 如果 isValid=false，category、color 等字段可以返回空字符串或默认值
+                - 如果 isValid=true，必须返回所有分析字段的有效值
+                """, categoryList, colorOptions, seasonOptions, fitTypeOptions, viewTypeOptions);
+        contentList.add(Map.of("type", "text", "text", prompt));
+
+        // --- Message ---
+        Map<String, Object> userMessage = new HashMap<>();
+        userMessage.put("role", "user");
+        userMessage.put("content", contentList);
+
+        // --- Final Body ---
+        Map<String, Object> body = new HashMap<>();
+        body.put("model", config.getModelName());
+        body.put("messages", Collections.singletonList(userMessage));
+        body.put("stream", false);
+
+        // ✅ 动态处理 Thinking 模式
+        if (config.isFinalThinkingEnabled()) {
+            body.put("enable_thinking", true);
             body.put("thinking_budget", config.getFinalThinkingBudget());
         }
 

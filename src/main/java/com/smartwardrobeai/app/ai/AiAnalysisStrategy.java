@@ -56,4 +56,21 @@ public interface AiAnalysisStrategy {
      * @return 完整的 AI 分析结果 VO，包含所有识别出的属性信息
      */
     ClothingAnalysisVO analyze( Long imageId, String imageUrl);
+
+    /**
+     * 执行图片校验和分析（合并版本，一次调用完成）
+     * <p>
+     * 性能优化版本：合并校验和分析为一次AI调用，降低成本。
+     * 使用分割后的图片进行校验和分析，同时完成：
+     * 1. 校验：是否适合试穿、是否包含一件服装等
+     * 2. 分析：提取 category, color, season, fitType, viewType 等信息
+     * </p>
+     *
+     * @param imageId 原始图片的ID（用于组装返回结果）
+     * @param originalImageUrl 原始图片的URL（用于组装返回结果）
+     * @param segmentedImageUrl 分割后的图片URL（用于AI分析）
+     * @return 完整的 AI 分析结果 VO，包含所有识别出的属性信息
+     * @throws com.smartwardrobeai.common.BusinessException 如果校验失败（不适合试穿、包含多件服装等）
+     */
+    ClothingAnalysisVO analyzeWithValidation(Long imageId, String originalImageUrl, String segmentedImageUrl);
 }

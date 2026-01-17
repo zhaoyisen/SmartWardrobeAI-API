@@ -55,6 +55,7 @@ public class SegmentationService {
             List<SegmentClothResponseBody.SegmentClothResponseBodyDataElements> elements = data.getElements();
             SegmentClothResponseBody.SegmentClothResponseBodyDataElements first = elements.getFirst();
             String imageURL = first.getImageURL();
+            log.info("图片分割完成，返回url：{}", imageURL);
             return imageURL;
         } catch (TeaException teaException) {
 //            String jsonString = Common.toJSONString(teaException);

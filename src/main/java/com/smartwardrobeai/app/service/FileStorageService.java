@@ -11,4 +11,13 @@ public interface FileStorageService {
      * @return 文件的完整访问 URL
      */
     SysFile upload(MultipartFile file);
+
+    /**
+     * 从 URL 下载并上传文件
+     *
+     * @param url 文件的 URL 地址
+     * @param originalFileName 原始文件名
+     * @return 上传后的文件信息
+     */
+    SysFile uploadFromUrl(String url, String originalFileName);
 }

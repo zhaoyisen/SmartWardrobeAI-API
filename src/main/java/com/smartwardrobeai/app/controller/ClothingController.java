@@ -4,8 +4,12 @@ import com.smartwardrobeai.common.Result;
 import com.smartwardrobeai.common.annotation.NoRepeatSubmit;
 import com.smartwardrobeai.app.model.dto.AiExecutionDTO;
 import com.smartwardrobeai.app.model.dto.ClothingCreateDTO;
+import com.smartwardrobeai.app.model.dto.ClothingQueryDTO;
 import com.smartwardrobeai.app.model.vo.ClothingAnalysisVO;
+import com.smartwardrobeai.app.model.vo.ClothingFilterOptionsVO;
+import com.smartwardrobeai.app.model.vo.ClothingVO;
 import com.smartwardrobeai.app.service.ClothingService;
+import com.smartwardrobeai.common.model.entity.PageResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -40,12 +44,42 @@ public class ClothingController {
     }
 
     /**
-     * Step 3: 确认新增接口
+     * 保存衣物（新增或编辑）
      */
-    @PostMapping("/add")
-    @Operation(summary = "确认新增衣物", description = "用户编辑补充信息后，最终保存")
-    public Result<Boolean> add(@RequestBody @Valid ClothingCreateDTO dto) {
-        boolean success = clothingService.createClothing(dto);
+    @PostMapping("/save")
+    @Operation(summary = "保存衣物", description = "新增或编辑衣物。当DTO中id为空时表示新增，不为空时表示编辑")
+    public Result<Boolean> save(@RequestBody @Valid ClothingCreateDTO dto) {
+        boolean success = clothingService.saveClothing(dto);
         return Result.success(success);
+    }
+
+    /**
+     * 查询衣橱列表
+     */
+    @GetMapping("/list")
+    @Operation(summary = "查询衣橱列表", description = "根据部位筛选当前用户的衣物，支持分页。region为空表示查询全部")
+    public Result<PageResult<ClothingVO>> list(ClothingQueryDTO queryDTO) {
+        PageResult<ClothingVO> result = clothingService.queryClothingList(queryDTO);
+        return Result.success(result);
+    }
+
+    /**
+     * 删除衣物（逻辑删除）
+     */
+    @DeleteMapping("/{id}")
+    @Operation(summary = "删除衣物", description = "逻辑删除衣物，将del_flag设置为1")
+    public Result<Boolean> delete(@Parameter(description = "衣物ID", required = true) @PathVariable Long id) {
+        boolean success = clothingService.deleteClothing(id);
+        return Result.success(success);
+    }
+
+    /**
+     * 获取用户衣物的筛选选项
+     */
+    @GetMapping("/filter-options")
+    @Operation(summary = "获取筛选选项", description = "查询当前用户衣物已有的筛选条件选项，用于前端展示查询条件")
+    public Result<ClothingFilterOptionsVO> getFilterOptions() {
+        ClothingFilterOptionsVO options = clothingService.getFilterOptions();
+        return Result.success(options);
     }
 }

@@ -28,7 +28,7 @@ public class TechnicalIndicatorValidator {
     private static final long MIN_SIZE_BYTES = 10 * 1024;    // 10KB (太小肯定没细节)
     private static final long MAX_SIZE_BYTES = 3 * 1024 * 1024; // 3MB (阿里云限制)
 
-    private static final int MIN_DIMENSION = 512;  // 最小边长 (VTON 需要细节)
+    private static final int MIN_DIMENSION = 50;  // 最小边长 (VTON 需要细节)
     private static final int MAX_DIMENSION = 3000; // 最大边长 (防止内存溢出)
 
     private static final double MIN_ASPECT_RATIO = 0.4; // 极瘦 (如 400x1000)
