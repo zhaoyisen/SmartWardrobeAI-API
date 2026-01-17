@@ -341,8 +341,10 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
 
     @Override
     public PageResult<ClothingVO> queryClothingList(ClothingQueryDTO queryDTO) {
-        log.info("查询衣橱列表: region={}, pageNum={}, pageSize={}", 
-                queryDTO.getRegion(), queryDTO.getPageNum(), queryDTO.getPageSize());
+        log.info("查询衣橱列表: region={}, category={}, defaultLayer={}, color={}, season={}, fitType={}, pageNum={}, pageSize={}", 
+                queryDTO.getRegion(), queryDTO.getCategory(), queryDTO.getDefaultLayer(), 
+                queryDTO.getColor(), queryDTO.getSeason(), queryDTO.getFitType(),
+                queryDTO.getPageNum(), queryDTO.getPageSize());
 
         // 1. 获取当前登录用户ID
         Long userId = UserContext.getUserId();
@@ -520,10 +522,17 @@ public class ClothingServiceImpl extends ServiceImpl<ClothingMapper, Clothing> i
                 .sorted()
                 .collect(Collectors.toList());
 
+        // seasons 字段可能存储逗号分隔的多个值（如 "Spring,Summer,Autumn"），需要拆分处理
         List<String> seasons = clothingList.stream()
                 .map(Clothing::getSeason)
                 .filter(Objects::nonNull)
                 .filter(season -> !season.trim().isEmpty())
+                .flatMap(season -> {
+                    // 按逗号拆分，去除空白字符
+                    return Arrays.stream(season.split(","))
+                            .map(String::trim)
+                            .filter(s -> !s.isEmpty());
+                })
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList());

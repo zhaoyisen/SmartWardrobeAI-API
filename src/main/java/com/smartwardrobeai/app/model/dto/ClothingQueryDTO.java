@@ -32,8 +32,8 @@ public class ClothingQueryDTO extends BasePageQuery {
     @Query(type = QueryType.EQ, column = "color")
     private String color;
 
-    @Schema(description = "季节筛选，为空表示查询全部", example = "Spring")
-    @Query(type = QueryType.EQ, column = "season")
+    @Schema(description = "季节筛选（支持包含匹配，如查询Spring可匹配Spring,Summer,Autumn），为空表示查询全部", example = "Spring")
+    @Query(type = QueryType.LIKE, column = "season")
     private String season;
 
     @Schema(description = "版型筛选，为空表示查询全部", example = "Regular")
